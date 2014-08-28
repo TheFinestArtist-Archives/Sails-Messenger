@@ -1,0 +1,25 @@
+.navbar-default {
+  background-color: #0b8fa2;
+  min-height: 46px;
+  border: none;
+          border-radius: 0px 0px 0 0;
+
+  -webkit-border-radius: 0px 0px 0 0;
+     -moz-border-radius: 0px 0px 0 0;
+}
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 2px;
+  padding-left: 2px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+.logo[href]:hover,
+.logo[href]:focus {
+  color: #fff;
+  text-decoration: none;
+}
