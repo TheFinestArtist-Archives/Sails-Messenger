@@ -9,6 +9,16 @@ module.exports = {
 
   attributes: {
 
+  	content: 'string',
+
+  	chat: {
+  		model: 'chat'
+  	},
+
+  	author: {
+    	model: 'user'
+  	}
+
   }
 };
 
