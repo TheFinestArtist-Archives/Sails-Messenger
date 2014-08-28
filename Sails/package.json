@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Web/iOS/Android Messenger Application using sockets/api in Sails.js",
-  "keywords": [],
+  "keywords": ["Sails", "Messenger", "Socket", "iOS", "Android"],
   "dependencies": {
     "sails": "~0.10.2",
     "sails-disk": "~0.10.0",
