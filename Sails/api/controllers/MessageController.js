@@ -1,7 +1,7 @@
 /**
- * ChatController
+ * MessageController
  *
- * @description :: Server-side logic for managing chats
+ * @description :: Server-side logic for managing messages
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
