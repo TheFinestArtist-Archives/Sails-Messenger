@@ -1,5 +1,5 @@
 /**
- * Gruntfile FTW!
+ * Gruntfile
  *
  * This Node script is executed when you run `grunt` or `sails lift`.
  * It's purpose is to load the Grunt tasks in your project's `tasks`
