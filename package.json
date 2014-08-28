@@ -1,5 +1,5 @@
 {
-  "name": "Sails Messenger",
+  "name": "Sails-Messenger",
   "private": true,
   "version": "1.0.0",
   "description": "Web/iOS/Android Messenger Application using sockets/api in Sails.js",
