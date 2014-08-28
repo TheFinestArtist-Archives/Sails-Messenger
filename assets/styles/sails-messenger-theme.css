@@ -10,10 +10,10 @@
 .logo {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 2px;
-  padding-left: 2px;
+  width: 200px;
+  text-align: center;
+  padding-top: 10px;
+  margin-left: -98px;
   color: #fff;
   font-size: 18px;
   font-weight: 500;
