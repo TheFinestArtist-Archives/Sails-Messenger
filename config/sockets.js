@@ -89,10 +89,10 @@ module.exports.sockets = {
   ***************************************************************************/
 
   adapter: 'redis',
-  host: 'pub-redis-15635.us-east-1-4.3.ec2.garantiadata.com:15635',
+  host: 'pub-redis-15635.us-east-1-4.3.ec2.garantiadata.com',
   port: 15635,
   db: 'redis-sails-messenger',
-  pass: 'GdTow28uZsidieZF'
+  pass: 'GdTow28uZsidieZF',
 
 
   /***************************************************************************

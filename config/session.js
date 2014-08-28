@@ -52,7 +52,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  host: 'pub-redis-15635.us-east-1-4.3.ec2.garantiadata.com:15635',
+  host: 'pub-redis-15635.us-east-1-4.3.ec2.garantiadata.com',
   port: 15635,
   // ttl: <redis session TTL in seconds>,
   db: 'redis-sails-messenger',
