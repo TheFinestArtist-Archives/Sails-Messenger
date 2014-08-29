@@ -5,7 +5,6 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 
 
 ##APIs
-=================
 ###Socket
 ####put : sockets/join => res.ok();
     username
@@ -23,15 +22,15 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 
 ###Chat
 ####post : /chat/start => ChatJSON
-		username
-		friend
+	username
+	friend
 
 ####put : /chat/join => ChatJSON
-		username
-		chat_id
+	username
+	chat_id
 
 ###Message
 ####post : /message => MessageJSON
-		content
-		author
-		chat
+	content
+	author
+	chat
