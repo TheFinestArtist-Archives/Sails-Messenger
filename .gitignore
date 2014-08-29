@@ -148,7 +148,6 @@ Podfile.lock
 *.dex
 *.class
 local.properties
-project.*
 .classpath
 .project
 gen/
