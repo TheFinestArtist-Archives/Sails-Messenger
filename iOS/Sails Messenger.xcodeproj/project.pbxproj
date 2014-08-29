@@ -14,7 +14,6 @@
 		D432385619B0006700A79C73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D432385519B0006700A79C73 /* main.m */; };
 		D432385A19B0006700A79C73 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D432385919B0006700A79C73 /* AppDelegate.m */; };
 		D432385D19B0006700A79C73 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D432385B19B0006700A79C73 /* Main_iPhone.storyboard */; };
-		D432386019B0006700A79C73 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D432385E19B0006700A79C73 /* Main_iPad.storyboard */; };
 		D432386319B0006700A79C73 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D432386219B0006700A79C73 /* FirstViewController.m */; };
 		D432386619B0006700A79C73 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D432386519B0006700A79C73 /* SecondViewController.m */; };
 		D432386819B0006700A79C73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D432386719B0006700A79C73 /* Images.xcassets */; };
@@ -47,7 +46,6 @@
 		D432385819B0006700A79C73 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D432385919B0006700A79C73 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D432385C19B0006700A79C73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		D432385F19B0006700A79C73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D432386119B0006700A79C73 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		D432386219B0006700A79C73 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		D432386419B0006700A79C73 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				D432385819B0006700A79C73 /* AppDelegate.h */,
 				D432385919B0006700A79C73 /* AppDelegate.m */,
 				D432385B19B0006700A79C73 /* Main_iPhone.storyboard */,
-				D432385E19B0006700A79C73 /* Main_iPad.storyboard */,
 				D432386119B0006700A79C73 /* FirstViewController.h */,
 				D432386219B0006700A79C73 /* FirstViewController.m */,
 				D432386419B0006700A79C73 /* SecondViewController.h */,
@@ -236,7 +233,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D432386019B0006700A79C73 /* Main_iPad.storyboard in Resources */,
 				D432386819B0006700A79C73 /* Images.xcassets in Resources */,
 				D432385D19B0006700A79C73 /* Main_iPhone.storyboard in Resources */,
 				D432385419B0006700A79C73 /* InfoPlist.strings in Resources */,
@@ -298,14 +294,6 @@
 				D432385C19B0006700A79C73 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		D432385E19B0006700A79C73 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D432385F19B0006700A79C73 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		D432387719B0006700A79C73 /* InfoPlist.strings */ = {
@@ -399,7 +387,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sails Messenger/Sails Messenger-Prefix.pch";
 				INFOPLIST_FILE = "Sails Messenger/Sails Messenger-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -412,7 +402,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sails Messenger/Sails Messenger-Prefix.pch";
 				INFOPLIST_FILE = "Sails Messenger/Sails Messenger-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -476,6 +468,7 @@
 				D432388019B0006700A79C73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D432388119B0006800A79C73 /* Build configuration list for PBXNativeTarget "Sails MessengerTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +477,7 @@
 				D432388319B0006800A79C73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
