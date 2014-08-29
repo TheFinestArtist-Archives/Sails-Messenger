@@ -6,11 +6,22 @@
  *
  */
 
+var PasswordHash = require('password-hash');
+
 module.exports = {
 
   attributes: {
 	
-		username: 'string',
+		username: {
+			type: 'string',
+			required: true,
+			unique: true
+		},
+
+		password: {
+			type: 'string',
+			required: true
+		},
 
 		chats: {
 			collection: 'chat',
@@ -18,8 +29,52 @@ module.exports = {
 			dominant: true
 		},
 
-		online: 'boolean'
+		friends: {
+      type: 'json'
+		},
+
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      obj.chats = this.chats;
+      obj.friends = this.friends;
+      return obj;
+    }
 	
+  },
+
+  beforeCreate: function(values, next) {
+    values.password = PasswordHash.generate(values.password);
+    values.friends = new Array();
+    next();
+  },
+
+  afterCreate: function(values, next) {
+
+		// User Create
+    User
+    .findOneById(values.id)
+    .populateAll()
+    .exec(function callback(err, user) {
+    	if (!err && user)
+		    sails.sockets.broadcast('Users', 'user', user.toJSON());
+	  });
+
+  	next();
+  },
+
+  afterUpdate: function(values, next) {
+
+    // Self Update
+    User
+    .findOneById(values.id)
+    .populateAll()
+    .exec(function callback(err, user) {
+    	if (!err && user)
+		    sails.sockets.broadcast('User#' + user.id, 'user', user.toJSON());
+	  });
+
+    next();
   }
 
 };

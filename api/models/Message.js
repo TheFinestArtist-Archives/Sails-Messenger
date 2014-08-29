@@ -9,7 +9,11 @@ module.exports = {
 
   attributes: {
 
-  	content: 'string',
+  	content: {
+  		type: 'string',
+  		required: true,
+  		defaultsTo: ''
+  	},
 
   	chat: {
   		model: 'chat'
@@ -17,8 +21,29 @@ module.exports = {
 
   	author: {
     	model: 'user'
-  	}
+  	},
 
+    toJSON: function() {
+      var obj = this.toObject();
+      obj.chat = this.chat;
+      obj.author = this.author;
+      return obj;
+    }
+
+  },
+
+  afterCreate: function(values, next) {
+    
+    Message
+    .findOneById(values.id)
+    .populateAll()
+    .exec(function callback(err, message) {
+      if (!err && message && message.chat) 
+        sails.sockets.broadcast('Chat#' + message.chat.id, 'message', message.toJSON());
+    });
+
+  	next();
   }
+
 };
 

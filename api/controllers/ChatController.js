@@ -6,6 +6,131 @@
  */
 
 module.exports = {
+
+	start: function(req, res) {
+		res.contentType('application/json; charset=utf-8');
+		var username = req.param('username');
+		var friend = req.param('friend');
+
+		User
+		.find({
+			or : [
+		    { username: username },
+		    { username: friend }
+		  ]
+		})
+		.populateAll()
+		.exec(function callback(err, users) {
+			if (err || !users || users.length != 2)
+				return res.notFound();
+
+			if (users[0].friends.indexOf(users[1].id) == -1) {
+				users[0].friends.push(users[1].id);
+				users[0].save();
+			}
+
+			if (users[1].friends.indexOf(users[0].id) == -1) {
+				users[1].friends.push(users[0].id);
+				users[1].save();
+			}
+
+			Chat
+			.create()
+			.exec(function callback(err, chat) {
+				if (err || !chat)
+					return res.serverError();
+
+				Chat
+				.findOneById(chat.id)
+				.populateAll()
+				.exec(function callback(err, chat) {
+					if (err || !chat)
+						return res.notFound();
+
+					chat.chatters.add(users[0].id);
+					chat.chatters.add(users[1].id);
+					chat.save(function callback(err) {
+						if (err)
+							return res.serverError();
+
+						Chat
+						.findOneById(chat.id)
+						.populateAll()
+						.exec(function callback(err, chat) {
+							if (err || !chat)
+								return res.notFound();
+
+							return res.send(chat.toJSON());
+						});
+					});
+				});
+			});
+		});
+	},
+
+	join: function(req, res) {
+		res.contentType('application/json; charset=utf-8');
+		var username = req.param('username');
+		var chat_id = req.param('chat_id');
+
+		User
+		.findOneByUsername(username)
+		.populateAll()
+		.exec(function callback(err, user) {
+			if (err || !user)
+				return res.notFound();
+
+			Chat
+			.findOneById(chat_id)
+			.populateAll()
+			.exec(function callback(err, chat) {
+				if (err || !chat)
+					return res.notFound();
+
+				if (getIDs(chat.chatters).indexOf(Number(user.id)) >= 0)
+					return res.send(chat.toJSON());
+
+				// add friends
+				for (var i = 0; i < chat.chatters.length; i++) {
+					if (user.friends.indexOf(Number(chat.chatters[i].id)) == -1) {
+						user.friends.push(chat.chatters[i].id);
+
+						if (chat.chatters[i].friends.indexOf(user.id) == -1) {
+							chat.chatters[i].friends.push(user.id);
+							chat.chatters[i].save();	
+						}
+					}
+				}
+				user.save();
+
+				// update chat
+				chat.chatters.add(user.id);
+				chat.save(function callback(err) {
+					if (err)
+						return res.serverError();
+
+					Chat
+					.findOneById(chat_id)
+					.populateAll()
+					.exec(function callback(err, chat) {
+						if (err || !chat)
+							return res.notFound();
+
+						return res.send(chat.toJSON());
+					});
+				});
+			});
+		});
+	}
 	
 };
 
+var getIDs = function(jsonArray) {
+	if (!jsonArray)
+		return new Array();
+
+  var ids = new Array();
+  for (var i = 0; i < jsonArray.length; i++)
+  	ids.push(jsonArray[i].id);
+	return ids;
+}
