@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D9F17741F514A849BF4E3CB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5BBFDFCDA44063A1BA23FB /* libPods.a */; };
 		D432384A19B0006700A79C73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432384919B0006700A79C73 /* Foundation.framework */; };
 		D432384C19B0006700A79C73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432384B19B0006700A79C73 /* CoreGraphics.framework */; };
 		D432384E19B0006700A79C73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432384D19B0006700A79C73 /* UIKit.framework */; };
@@ -24,6 +25,14 @@
 		D432387B19B0006700A79C73 /* Sails_MessengerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D432387A19B0006700A79C73 /* Sails_MessengerTests.m */; };
 		D476657019B009000053D030 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D476656F19B009000053D030 /* icon@2x.png */; };
 		D476657319B00D2F0053D030 /* SailsColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657219B00D2F0053D030 /* SailsColor.m */; };
+		D476657919B013C00053D030 /* SailsDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657819B013C00053D030 /* SailsDefaults.m */; };
+		D476657C19B013D70053D030 /* SailsAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657B19B013D70053D030 /* SailsAPIs.m */; };
+		D476657F19B013EC0053D030 /* SocketAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657E19B013EC0053D030 /* SocketAgent.m */; };
+		D476658219B013F60053D030 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658119B013F60053D030 /* User.m */; };
+		D476658619B014060053D030 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658519B014060053D030 /* Chat.m */; };
+		D476658919B0140E0053D030 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658819B0140E0053D030 /* Message.m */; };
+		D476658C19B014FB0053D030 /* SailsDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658B19B014FB0053D030 /* SailsDateFormatter.m */; };
+		D476659019B015A40053D030 /* NSDictionary+Sails.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658F19B015A40053D030 /* NSDictionary+Sails.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D5BBFDFCDA44063A1BA23FB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00EBF722A074335BAA7768B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D432384619B0006700A79C73 /* Sails Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sails Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D432384919B0006700A79C73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D432384B19B0006700A79C73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,6 +72,22 @@
 		D476656F19B009000053D030 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		D476657119B00D2F0053D030 /* SailsColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsColor.h; sourceTree = "<group>"; };
 		D476657219B00D2F0053D030 /* SailsColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsColor.m; sourceTree = "<group>"; };
+		D476657719B013C00053D030 /* SailsDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsDefaults.h; sourceTree = "<group>"; };
+		D476657819B013C00053D030 /* SailsDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsDefaults.m; sourceTree = "<group>"; };
+		D476657A19B013D70053D030 /* SailsAPIs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsAPIs.h; sourceTree = "<group>"; };
+		D476657B19B013D70053D030 /* SailsAPIs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsAPIs.m; sourceTree = "<group>"; };
+		D476657D19B013EC0053D030 /* SocketAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketAgent.h; sourceTree = "<group>"; };
+		D476657E19B013EC0053D030 /* SocketAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketAgent.m; sourceTree = "<group>"; };
+		D476658019B013F60053D030 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D476658119B013F60053D030 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D476658419B014060053D030 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		D476658519B014060053D030 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		D476658719B0140E0053D030 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		D476658819B0140E0053D030 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		D476658A19B014FB0053D030 /* SailsDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsDateFormatter.h; sourceTree = "<group>"; };
+		D476658B19B014FB0053D030 /* SailsDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsDateFormatter.m; sourceTree = "<group>"; };
+		D476658E19B015A40053D030 /* NSDictionary+Sails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Sails.h"; sourceTree = "<group>"; };
+		D476658F19B015A40053D030 /* NSDictionary+Sails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Sails.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +98,7 @@
 				D432384C19B0006700A79C73 /* CoreGraphics.framework in Frameworks */,
 				D432384E19B0006700A79C73 /* UIKit.framework in Frameworks */,
 				D432384A19B0006700A79C73 /* Foundation.framework in Frameworks */,
+				1D9F17741F514A849BF4E3CB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +122,7 @@
 				D432387419B0006700A79C73 /* Sails MessengerTests */,
 				D432384819B0006700A79C73 /* Frameworks */,
 				D432384719B0006700A79C73 /* Products */,
+				A00EBF722A074335BAA7768B /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +142,7 @@
 				D432384B19B0006700A79C73 /* CoreGraphics.framework */,
 				D432384D19B0006700A79C73 /* UIKit.framework */,
 				D432386E19B0006700A79C73 /* XCTest.framework */,
+				5D5BBFDFCDA44063A1BA23FB /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,6 +150,10 @@
 		D432384F19B0006700A79C73 /* Sails Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				D476658D19B0157E0053D030 /* extensions */,
+				D476657619B012BB0053D030 /* models */,
+				D476657519B012890053D030 /* modules */,
+				D476657419B0123F0053D030 /* utils */,
 				D476656E19B008C10053D030 /* images */,
 				D432385819B0006700A79C73 /* AppDelegate.h */,
 				D432385919B0006700A79C73 /* AppDelegate.m */,
@@ -128,8 +162,6 @@
 				D432386219B0006700A79C73 /* FirstViewController.m */,
 				D432386419B0006700A79C73 /* SecondViewController.h */,
 				D432386519B0006700A79C73 /* SecondViewController.m */,
-				D476657119B00D2F0053D030 /* SailsColor.h */,
-				D476657219B00D2F0053D030 /* SailsColor.m */,
 				D432386719B0006700A79C73 /* Images.xcassets */,
 				D432385019B0006700A79C73 /* Supporting Files */,
 			);
@@ -173,6 +205,52 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		D476657419B0123F0053D030 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				D476657119B00D2F0053D030 /* SailsColor.h */,
+				D476657219B00D2F0053D030 /* SailsColor.m */,
+				D476658A19B014FB0053D030 /* SailsDateFormatter.h */,
+				D476658B19B014FB0053D030 /* SailsDateFormatter.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		D476657519B012890053D030 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				D476657719B013C00053D030 /* SailsDefaults.h */,
+				D476657819B013C00053D030 /* SailsDefaults.m */,
+				D476657A19B013D70053D030 /* SailsAPIs.h */,
+				D476657B19B013D70053D030 /* SailsAPIs.m */,
+				D476657D19B013EC0053D030 /* SocketAgent.h */,
+				D476657E19B013EC0053D030 /* SocketAgent.m */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		D476657619B012BB0053D030 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D476658019B013F60053D030 /* User.h */,
+				D476658119B013F60053D030 /* User.m */,
+				D476658419B014060053D030 /* Chat.h */,
+				D476658519B014060053D030 /* Chat.m */,
+				D476658719B0140E0053D030 /* Message.h */,
+				D476658819B0140E0053D030 /* Message.m */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		D476658D19B0157E0053D030 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D476658E19B015A40053D030 /* NSDictionary+Sails.h */,
+				D476658F19B015A40053D030 /* NSDictionary+Sails.m */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -180,9 +258,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D432387E19B0006700A79C73 /* Build configuration list for PBXNativeTarget "Sails Messenger" */;
 			buildPhases = (
+				95CBBEDA56384FC5AF6A59B8 /* Check Pods Manifest.lock */,
 				D432384219B0006700A79C73 /* Sources */,
 				D432384319B0006700A79C73 /* Frameworks */,
 				D432384419B0006700A79C73 /* Resources */,
+				2CD44E349BE248CFACC3F46B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,15 +346,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CD44E349BE248CFACC3F46B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95CBBEDA56384FC5AF6A59B8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D432384219B0006700A79C73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D476659019B015A40053D030 /* NSDictionary+Sails.m in Sources */,
+				D476657F19B013EC0053D030 /* SocketAgent.m in Sources */,
 				D432386619B0006700A79C73 /* SecondViewController.m in Sources */,
+				D476658219B013F60053D030 /* User.m in Sources */,
 				D432385A19B0006700A79C73 /* AppDelegate.m in Sources */,
+				D476657C19B013D70053D030 /* SailsAPIs.m in Sources */,
+				D476658C19B014FB0053D030 /* SailsDateFormatter.m in Sources */,
+				D476658619B014060053D030 /* Chat.m in Sources */,
+				D476657919B013C00053D030 /* SailsDefaults.m in Sources */,
 				D432386319B0006700A79C73 /* FirstViewController.m in Sources */,
 				D476657319B00D2F0053D030 /* SailsColor.m in Sources */,
+				D476658919B0140E0053D030 /* Message.m in Sources */,
 				D432385619B0006700A79C73 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +520,7 @@
 		};
 		D432387F19B0006700A79C73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A00EBF722A074335BAA7768B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -414,6 +536,7 @@
 		};
 		D432388019B0006700A79C73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A00EBF722A074335BAA7768B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
