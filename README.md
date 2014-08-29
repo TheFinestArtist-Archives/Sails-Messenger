@@ -27,3 +27,9 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 ####put : /chat/join => ChatJSON
 		username
 		chat_id
+
+###Message
+####post : /message => MessageJSON
+		content
+		author
+		chat
