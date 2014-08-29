@@ -22,6 +22,8 @@
 		D432387119B0006700A79C73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432384D19B0006700A79C73 /* UIKit.framework */; };
 		D432387919B0006700A79C73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D432387719B0006700A79C73 /* InfoPlist.strings */; };
 		D432387B19B0006700A79C73 /* Sails_MessengerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D432387A19B0006700A79C73 /* Sails_MessengerTests.m */; };
+		D476657019B009000053D030 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D476656F19B009000053D030 /* icon@2x.png */; };
+		D476657319B00D2F0053D030 /* SailsColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657219B00D2F0053D030 /* SailsColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		D432387619B0006700A79C73 /* Sails MessengerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sails MessengerTests-Info.plist"; sourceTree = "<group>"; };
 		D432387819B0006700A79C73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D432387A19B0006700A79C73 /* Sails_MessengerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sails_MessengerTests.m; sourceTree = "<group>"; };
+		D476656F19B009000053D030 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		D476657119B00D2F0053D030 /* SailsColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsColor.h; sourceTree = "<group>"; };
+		D476657219B00D2F0053D030 /* SailsColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsColor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,7 @@
 		D432384F19B0006700A79C73 /* Sails Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				D476656E19B008C10053D030 /* images */,
 				D432385819B0006700A79C73 /* AppDelegate.h */,
 				D432385919B0006700A79C73 /* AppDelegate.m */,
 				D432385B19B0006700A79C73 /* Main_iPhone.storyboard */,
@@ -122,6 +128,8 @@
 				D432386219B0006700A79C73 /* FirstViewController.m */,
 				D432386419B0006700A79C73 /* SecondViewController.h */,
 				D432386519B0006700A79C73 /* SecondViewController.m */,
+				D476657119B00D2F0053D030 /* SailsColor.h */,
+				D476657219B00D2F0053D030 /* SailsColor.m */,
 				D432386719B0006700A79C73 /* Images.xcassets */,
 				D432385019B0006700A79C73 /* Supporting Files */,
 			);
@@ -155,6 +163,14 @@
 				D432387719B0006700A79C73 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D476656E19B008C10053D030 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D476656F19B009000053D030 /* icon@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D432386819B0006700A79C73 /* Images.xcassets in Resources */,
+				D476657019B009000053D030 /* icon@2x.png in Resources */,
 				D432385D19B0006700A79C73 /* Main_iPhone.storyboard in Resources */,
 				D432385419B0006700A79C73 /* InfoPlist.strings in Resources */,
 			);
@@ -257,6 +274,7 @@
 				D432386619B0006700A79C73 /* SecondViewController.m in Sources */,
 				D432385A19B0006700A79C73 /* AppDelegate.m in Sources */,
 				D432386319B0006700A79C73 /* FirstViewController.m in Sources */,
+				D476657319B00D2F0053D030 /* SailsColor.m in Sources */,
 				D432385619B0006700A79C73 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
