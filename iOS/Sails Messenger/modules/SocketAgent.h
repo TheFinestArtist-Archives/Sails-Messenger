@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <socket.IO/SocketIO.h>
 
-@interface SocketAgent : NSObject
+@interface SocketAgent : NSObject <SocketIODelegate> {
+    SocketIO *socketIO;
+    NSInteger reconnectTry;
+}
+
++ (SocketAgent *)sharedInstance;
+
+- (void)socketConnect;
+- (void)socketJoin;
 
 @end
