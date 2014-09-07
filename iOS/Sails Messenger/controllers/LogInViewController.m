@@ -14,36 +14,28 @@
 
 @implementation LogInViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.textColor = [UIColor whiteColor];
+    self.navigationItem.titleView = titlelabel;
+    titlelabel.text = @"Log In";
+    [titlelabel sizeToFit];
+    
+    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(close:)];
+    self.navigationItem.leftBarButtonItem = close;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)close:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

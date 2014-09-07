@@ -9,6 +9,8 @@
 #import "CatchPointViewController.h"
 #import "UIColor+Sails.h"
 #import "UIImage+Sails.h"
+#import "SignUpViewController.h"
+#import "LogInViewController.h"
 
 @interface CatchPointViewController ()
 
@@ -24,6 +26,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 7) {
         self.navigationController.navigationBar.translucent = NO;
@@ -56,10 +60,26 @@
     [login setBackgroundImage:[UIImage imageWithColor:[UIColor black:0.2]] forState:UIControlStateNormal];
     [login setBackgroundImage:[UIImage imageWithColor:[UIColor black:0.25]] forState:UIControlStateHighlighted];
     [self.view addSubview:login];
+    
+    [signup addTarget:self action:@selector(signup:) forControlEvents:UIControlEventTouchUpInside];
+    [login addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBarHidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (void)signup:(id)sender {
+    SignUpViewController *viewController = [[SignUpViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)login:(id)sender {
+    LogInViewController *viewController = [[LogInViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 @end
