@@ -26,7 +26,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 ###Auth
 ####get : /auth/verify => UsersJSON 
     username
-    password (hashed)
+    password (hashedg)
 
 ###Chat
 ####get : /chat => ChatJSON LIST

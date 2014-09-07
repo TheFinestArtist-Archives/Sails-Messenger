@@ -34,7 +34,37 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  'put /user/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
+
+  'delete /user/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
+
+  'put /chat/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
+
+  'delete /chat/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
+
+  'put /message/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
+
+  'delete /message/:id': {
+    controller: 'auth',
+    action: 'forbidden'
+  },
 
   /***************************************************************************
   *                                                                          *

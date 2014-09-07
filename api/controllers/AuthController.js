@@ -30,6 +30,10 @@ module.exports = {
 
 			return res.send(user.toJSON());
 		});
+	},
+
+	forbidden: function(req, res) {
+		return res.forbidden();
 	}
 	
 };
