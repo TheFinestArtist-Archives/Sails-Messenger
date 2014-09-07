@@ -9,6 +9,7 @@
 #import "SignViewController.h"
 #import "UIColor+Sails.h"
 #import "SailsAPIs.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SignViewController ()
 
@@ -127,6 +128,49 @@
 }
 
 - (void)sign:(id)sender {
+    
+    NSString *username = usernameField.text;
+    NSString *password = passwordField.text;
+    
+    if (username == nil || username.length == 0
+        || password == nil || password.length == 0)
+        return;
+    
+    UIBarButtonItem *sign = (UIBarButtonItem *)sender;
+    sign.enabled = NO;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [UIColor emerald:0.7];
+    hud.labelText = title;
+    hud.detailsLabelText = @"Loading...";
+    hud.yOffset = -40.0f;
+    
+    switch (signType) {
+        case SIGN_UP: {
+            [SailsAPIs signUpWithUsername:username
+                                 password:password
+                                  success:^(User *user) {
+                                      [hud hide:YES];
+                                      sign.enabled = YES;
+                                  } failure:^(NSError *error) {
+                                      [hud hide:YES];
+                                      sign.enabled = YES;
+                                  }];
+            break;
+        }
+        case LOG_IN: {
+            [SailsAPIs signInWithUsername:username
+                                 password:password
+                                  success:^(User *user) {
+                                      [hud hide:YES];
+                                      sign.enabled = YES;
+                                  } failure:^(NSError *error) {
+                                      [hud hide:YES];
+                                      sign.enabled = YES;
+                                  }];
+            break;
+        }
+    }
 }
 
 @end
