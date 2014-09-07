@@ -9,14 +9,13 @@
 #import "CatchPointViewController.h"
 #import "UIColor+Sails.h"
 #import "UIImage+Sails.h"
-#import "SignUpViewController.h"
-#import "LogInViewController.h"
+#import "SignViewController.h"
 
 @interface CatchPointViewController ()
 
-@property (strong, nonatomic) UILabel *label;
-@property (strong, nonatomic) UIButton *signup;
-@property (strong, nonatomic) UIButton *login;
+@property UILabel *label;
+@property UIButton *signup;
+@property UIButton *login;
 
 @end
 
@@ -26,8 +25,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
     if (version >= 7) {
         self.navigationController.navigationBar.translucent = NO;
@@ -71,13 +68,15 @@
 }
 
 - (void)signup:(id)sender {
-    SignUpViewController *viewController = [[SignUpViewController alloc] init];
+    SignViewController *viewController = [[SignViewController alloc] init];
+    viewController.signType = SIGN_UP;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)login:(id)sender {
-    LogInViewController *viewController = [[LogInViewController alloc] init];
+    SignViewController *viewController = [[SignViewController alloc] init];
+    viewController.signType = LOG_IN;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.navigationController presentViewController:navController animated:YES completion:nil];
 }

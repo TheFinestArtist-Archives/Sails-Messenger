@@ -29,8 +29,7 @@
 		D476658919B0140E0053D030 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658819B0140E0053D030 /* Message.m */; };
 		D476659019B015A40053D030 /* NSDictionary+Sails.m in Sources */ = {isa = PBXBuildFile; fileRef = D476658F19B015A40053D030 /* NSDictionary+Sails.m */; };
 		D4A7097419BC31CD00D8C2AF /* CatchPointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7097319BC31CD00D8C2AF /* CatchPointViewController.m */; };
-		D4A7097719BC31D800D8C2AF /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7097619BC31D800D8C2AF /* SignUpViewController.m */; };
-		D4A7097A19BC31E600D8C2AF /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7097919BC31E600D8C2AF /* LogInViewController.m */; };
+		D4A7097719BC31D800D8C2AF /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7097619BC31D800D8C2AF /* SignViewController.m */; };
 		D4A7098719BC5A7100D8C2AF /* UIColor+Sails.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7098619BC5A7100D8C2AF /* UIColor+Sails.m */; };
 		D4A7098A19BC5AAB00D8C2AF /* UIImage+Sails.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7098919BC5AAB00D8C2AF /* UIImage+Sails.m */; };
 		D4A7098D19BC5B3C00D8C2AF /* NSDate+Sails.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7098C19BC5B3C00D8C2AF /* NSDate+Sails.m */; };
@@ -282,10 +281,8 @@
 		D4A7095319BC309A00D8C2AF /* SRWebSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		D4A7097219BC31CD00D8C2AF /* CatchPointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatchPointViewController.h; path = controllers/CatchPointViewController.h; sourceTree = "<group>"; };
 		D4A7097319BC31CD00D8C2AF /* CatchPointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatchPointViewController.m; path = controllers/CatchPointViewController.m; sourceTree = "<group>"; };
-		D4A7097519BC31D800D8C2AF /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = controllers/SignUpViewController.h; sourceTree = "<group>"; };
-		D4A7097619BC31D800D8C2AF /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = controllers/SignUpViewController.m; sourceTree = "<group>"; };
-		D4A7097819BC31E600D8C2AF /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = controllers/LogInViewController.h; sourceTree = "<group>"; };
-		D4A7097919BC31E600D8C2AF /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = controllers/LogInViewController.m; sourceTree = "<group>"; };
+		D4A7097519BC31D800D8C2AF /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = controllers/SignViewController.h; sourceTree = "<group>"; };
+		D4A7097619BC31D800D8C2AF /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = controllers/SignViewController.m; sourceTree = "<group>"; };
 		D4A7098519BC5A7100D8C2AF /* UIColor+Sails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Sails.h"; sourceTree = "<group>"; };
 		D4A7098619BC5A7100D8C2AF /* UIColor+Sails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Sails.m"; sourceTree = "<group>"; };
 		D4A7098819BC5AAB00D8C2AF /* UIImage+Sails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Sails.h"; sourceTree = "<group>"; };
@@ -806,10 +803,8 @@
 				D4DFC15D19BC27F000856175 /* MessageViewController.m */,
 				D4A7097219BC31CD00D8C2AF /* CatchPointViewController.h */,
 				D4A7097319BC31CD00D8C2AF /* CatchPointViewController.m */,
-				D4A7097519BC31D800D8C2AF /* SignUpViewController.h */,
-				D4A7097619BC31D800D8C2AF /* SignUpViewController.m */,
-				D4A7097819BC31E600D8C2AF /* LogInViewController.h */,
-				D4A7097919BC31E600D8C2AF /* LogInViewController.m */,
+				D4A7097519BC31D800D8C2AF /* SignViewController.h */,
+				D4A7097619BC31D800D8C2AF /* SignViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1004,9 +999,8 @@
 				D432385A19B0006700A79C73 /* AppDelegate.m in Sources */,
 				D4A7097419BC31CD00D8C2AF /* CatchPointViewController.m in Sources */,
 				D4A7098D19BC5B3C00D8C2AF /* NSDate+Sails.m in Sources */,
-				D4A7097719BC31D800D8C2AF /* SignUpViewController.m in Sources */,
+				D4A7097719BC31D800D8C2AF /* SignViewController.m in Sources */,
 				D476657C19B013D70053D030 /* SailsAPIs.m in Sources */,
-				D4A7097A19BC31E600D8C2AF /* LogInViewController.m in Sources */,
 				D4DFC15E19BC27F000856175 /* MessageViewController.m in Sources */,
 				D4A7098A19BC5AAB00D8C2AF /* UIImage+Sails.m in Sources */,
 				D476658619B014060053D030 /* Chat.m in Sources */,
