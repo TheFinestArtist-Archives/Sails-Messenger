@@ -35,7 +35,6 @@ module.exports = {
 
     toJSON: function() {
       var obj = this.toObject();
-      delete obj.password;
       obj.chats = this.chats;
       obj.friends = this.friends;
       return obj;
