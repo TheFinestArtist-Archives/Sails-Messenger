@@ -10,11 +10,14 @@
 #import "UIColor+Sails.h"
 #import "SailsAPIs.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "UserViewController.h"
+#import "ChatViewController.h"
+#import "AppDelegate.h"
 
 @interface SignViewController ()
 
 @property NSString *title;
-@property UITableView *tableView;
+@property UITableView *tableview;
 @property UIScreen *mainScreen;
 @property UITextField *usernameField;
 @property UITextField *passwordField;
@@ -23,7 +26,7 @@
 
 @implementation SignViewController
 
-@synthesize signType, title, tableView, mainScreen, usernameField, passwordField;
+@synthesize signType, title, tableview, mainScreen, usernameField, passwordField;
 
 - (void)viewDidLoad
 {
@@ -43,9 +46,9 @@
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = titlelabel;
     titlelabel.text = title;
     [titlelabel sizeToFit];
+    self.navigationItem.titleView = titlelabel;
     
     UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleDone target:self action:@selector(close:)];
     self.navigationItem.leftBarButtonItem = close;
@@ -54,13 +57,13 @@
     self.navigationItem.rightBarButtonItem = sign;
     
     mainScreen = [UIScreen mainScreen];
-    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, mainScreen.bounds.size.height)];
-    tableView.backgroundColor = [UIColor whiteColor];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableView];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, mainScreen.bounds.size.height)];
+    tableview.backgroundColor = [UIColor whiteColor];
+    tableview.delegate = self;
+    tableview.dataSource = self;
+    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:tableview];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -102,12 +105,13 @@
             tableViewcCell.textLabel.text = @"Password";
             passwordField = textfield;
             passwordField.returnKeyType = UIReturnKeyDone;
+            passwordField.secureTextEntry = YES;
             break;
     }
     return tableViewcCell;
 }
 
-
+// UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     if ([textField isEqual:usernameField]) {
@@ -123,6 +127,7 @@
     
 }
 
+// UIBarButtonItem
 - (void)close:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -152,6 +157,7 @@
                                   success:^(User *user) {
                                       [hud hide:YES];
                                       sign.enabled = YES;
+                                      [self showTabView];
                                   } failure:^(NSError *error) {
                                       [hud hide:YES];
                                       sign.enabled = YES;
@@ -164,6 +170,7 @@
                                   success:^(User *user) {
                                       [hud hide:YES];
                                       sign.enabled = YES;
+                                      [self showTabView];
                                   } failure:^(NSError *error) {
                                       [hud hide:YES];
                                       sign.enabled = YES;
@@ -171,6 +178,22 @@
             break;
         }
     }
+}
+
+- (void)showTabView {
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    UserViewController* vc1 = [[UserViewController alloc] init];
+    ChatViewController* vc2 = [[ChatViewController alloc] init];
+    
+    NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
+    tabBarController.viewControllers = controllers;
+    
+    UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.window addSubview:navcontroller.view];
+    appDelegate.window.rootViewController = navcontroller;
 }
 
 @end

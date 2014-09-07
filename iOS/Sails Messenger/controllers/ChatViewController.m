@@ -7,43 +7,39 @@
 //
 
 #import "ChatViewController.h"
+#import "UIColor+Sails.h"
 
 @interface ChatViewController ()
+
+@property UITableView *tableView;
+@property UIScreen *mainScreen;
 
 @end
 
 @implementation ChatViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize tableView, mainScreen;
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tabBarItem.title = @"Chat";
+    self.tabBarController.tabBar.translucent = NO;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titlelabel.backgroundColor = [UIColor clearColor];
+    titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
+    titlelabel.textAlignment = NSTextAlignmentCenter;
+    titlelabel.textColor = [UIColor whiteColor];
+    titlelabel.text = @"Chat";
+    [titlelabel sizeToFit];
+    self.tabBarController.navigationItem.titleView = titlelabel;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+// UITableViewDataSource & UITableViewDataSource
 
 @end

@@ -20,11 +20,19 @@
 {
     // Override point for customization after application launch.
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     NSDictionary* barButtonItemAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:16.0],
                                               NSForegroundColorAttributeName: [UIColor whiteColor],
                                               };
     [[UIBarButtonItem appearanceWhenContainedIn: [UINavigationController class], nil] setTitleTextAttributes:barButtonItemAttributes
                                                                                                     forState:UIControlStateNormal];
+    
+    [[UITabBar appearance] setBarTintColor:[UIColor black:1]];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor whiteColor] }
+                                             forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor emerald:1] }
+                                             forState:UIControlStateSelected];
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         [[UINavigationBar appearance] setTintColor:[UIColor turquoise:1]];
@@ -51,8 +59,9 @@
         NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
         tabBarController.viewControllers = controllers;
         
-        // Add the tab bar controller's current view as a subview of the window
-        [self.window addSubview:tabBarController.view];
+        UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+        [self.window addSubview:navcontroller.view];
+        self.window.rootViewController = navcontroller;
     }
     
     [self.window makeKeyAndVisible];
