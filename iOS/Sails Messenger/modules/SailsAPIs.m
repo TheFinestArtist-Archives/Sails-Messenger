@@ -104,6 +104,29 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                         }];
 }
 
++ (void)signInWithUsername:(NSString *)username
+                  password:(NSString *)password
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *params = @{@"username" : username,
+                             @"password" : password};
+    
+    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/user/signin"]
+                      parameters:params
+                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                 [SailsDefaults setUser:responseObject];
+                                 User *user = [[User alloc] initWithDictionary:responseObject];
+                                 dispatch_async( dispatch_get_main_queue(), ^{
+                                     success(user);
+                                 });
+                             });
+                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                             failure(error);
+                         }];
+}
+
 + (void)verifyWithUsername:(NSString *)username
                   password:(NSString *)password
                    success:(void (^)(User *user))success

@@ -9,7 +9,7 @@
 #import "Message.h"
 #import "Chat.h"
 #import "User.h"
-#import "SailsDateFormatter.h"
+#import "NSDate+Sails.h"
 #import "NSDictionary+Sails.h"
 
 @implementation Message
@@ -21,8 +21,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [SailsDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [SailsDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.content = [dictionary objectForKey:@"content"];
         self.chat = [[Chat alloc] initWithDictionary:[dictionary objectForKey:@"chat"]];
         self.author = [[User alloc] initWithDictionary:[dictionary objectForKey:@"author"]];

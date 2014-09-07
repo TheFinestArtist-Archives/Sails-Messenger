@@ -7,12 +7,49 @@
 //
 
 #import "AppDelegate.h"
+#import "UIColor+Sails.h"
+#import "SailsDefaults.h"
+#import "User.h"
+#import "UserViewController.h"
+#import "ChatViewController.h"
+#import "CatchPointViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[UINavigationBar appearance] setTintColor:[UIColor turquoise:1]];
+    } else {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor turquoise:1]];
+    }
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    User *user = [SailsDefaults getUser];
+    if(user == nil || user.username == nil || user.password == nil) {
+        [SailsDefaults clear];
+        CatchPointViewController *catchview = [[CatchPointViewController alloc] init];
+        UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:catchview];
+        [self.window addSubview:navcontroller.view];
+        self.window.rootViewController = navcontroller;
+    } else {
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        
+        UserViewController* vc1 = [[UserViewController alloc] init];
+        ChatViewController* vc2 = [[ChatViewController alloc] init];
+        
+        NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
+        tabBarController.viewControllers = controllers;
+        
+        // Add the tab bar controller's current view as a subview of the window
+        [self.window addSubview:tabBarController.view];
+    }
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							

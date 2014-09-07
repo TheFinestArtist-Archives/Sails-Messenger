@@ -1,14 +1,14 @@
 //
-//  SailsDateFormatter.m
+//  NSDate+Sails.m
 //  Sails Messenger
 //
-//  Created by TheFinestArtist on 2014. 8. 29..
+//  Created by TheFinestArtist on 2014. 9. 7..
 //  Copyright (c) 2014년 TheFinestArtist. All rights reserved.
 //
 
-#import "SailsDateFormatter.h"
+#import "NSDate+Sails.h"
 
-@implementation SailsDateFormatter
+@implementation NSDate (Sails)
 
 + (NSDate *)dateFromString:(NSString *)dateString {
     if (dateString == (NSString *) [NSNull null])

@@ -23,6 +23,11 @@
                    success:(void (^)(User *user))success
                    failure:(void (^)(NSError *error))failure;
 
++ (void)signInWithUsername:(NSString *)username
+                  password:(NSString *)password
+                   success:(void (^)(User *user))success
+                   failure:(void (^)(NSError *error))failure;
+
 + (void)verifyWithUsername:(NSString *)username
                   password:(NSString *)password
                    success:(void (^)(User *user))success

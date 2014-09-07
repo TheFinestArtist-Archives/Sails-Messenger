@@ -8,7 +8,7 @@
 
 #import "User.h"
 #import "Chat.h"
-#import "SailsDateFormatter.h"
+#import "NSDate+Sails.h"
 #import "NSDictionary+Sails.h"
 
 @implementation User
@@ -20,8 +20,8 @@
     
     if (self) {
         self.id = [[dictionary objectForKey:@"id"] integerValue];
-        self.createdAt = [SailsDateFormatter dateFromString:[dictionary objectForKey:@"createdAt"]];
-        self.updatedAt = [SailsDateFormatter dateFromString:[dictionary objectForKey:@"updatedAt"]];
+        self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
+        self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.username = [dictionary objectForKey:@"username"];
         self.password = [dictionary objectForKey:@"password"];
         
