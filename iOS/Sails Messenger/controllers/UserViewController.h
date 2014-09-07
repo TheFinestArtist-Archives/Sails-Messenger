@@ -1,13 +1,13 @@
 //
-//  FirstViewController.h
+//  UserViewController.h
 //  Sails Messenger
 //
-//  Created by TheFinestArtist on 2014. 8. 29..
+//  Created by TheFinestArtist on 2014. 9. 7..
 //  Copyright (c) 2014년 TheFinestArtist. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface UserViewController : UIViewController
 
 @end

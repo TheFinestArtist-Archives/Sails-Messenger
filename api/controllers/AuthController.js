@@ -5,8 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var PasswordHash = require('password-hash');
-
 module.exports = {
 
 	verify: function(req, res) {
@@ -24,8 +22,7 @@ module.exports = {
 				return res.send(404, error);
 			}
 
-
-			if (!PasswordHash.verify(password, user.password)) {
+			if (password != user.password) {
 				var error = {};
 				error.message = 'Wrong Password';
 				return res.send(400, error);
