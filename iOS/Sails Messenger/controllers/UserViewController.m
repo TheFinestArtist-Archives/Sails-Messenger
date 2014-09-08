@@ -15,34 +15,33 @@
 @interface UserViewController ()
 
 @property UITableView *tableview;
-@property UIScreen *mainScreen;
 @property User *me;
 @property NSMutableArray *friends;
-@property NSMutableArray *othres;
+@property NSMutableArray *others;
 
 @end
 
 @implementation UserViewController
 
-@synthesize tableview, mainScreen, me, friends, othres;
+@synthesize tableview, me, friends, others;
 
 static NSString *CellIdentifier = @"UserCell";
 
 - (void)viewDidLoad
 {
-    self.tabBarItem.title = @"User";
+    self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    mainScreen = [UIScreen mainScreen];
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, mainScreen.bounds.size.height)
+    tableview = [[UITableView alloc] initWithFrame:self.view.bounds
                                              style:UITableViewStyleGrouped];
     tableview.backgroundColor = [UIColor whiteColor];
     tableview.delegate = self;
     tableview.dataSource = self;
     tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:tableview];
     
     me = [SailsDefaults getUser];
@@ -54,13 +53,21 @@ static NSString *CellIdentifier = @"UserCell";
     titlelabel.font = [UIFont boldSystemFontOfSize:16.0];
     titlelabel.textAlignment = NSTextAlignmentCenter;
     titlelabel.textColor = [UIColor whiteColor];
-    titlelabel.text = @"User";
+    titlelabel.text = @"Chatter";
     [titlelabel sizeToFit];
     self.tabBarController.navigationItem.titleView = titlelabel;
     
+    [SailsAPIs verifyWithUsername:me.username
+                         password:me.password
+                          success:^(User *user) {
+                              me = user;
+                              [tableview reloadData];
+                          } failure:^(NSError *error) {
+                          }];
+    
     [SailsAPIs userListInSuccess:^(NSArray *users) {
         friends = [NSMutableArray array];
-        othres = [NSMutableArray array];
+        others = [NSMutableArray array];
         for (User *user in users) {
             BOOL isFriend = NO;
             for (NSObject *userID in me.friends)
@@ -70,7 +77,7 @@ static NSString *CellIdentifier = @"UserCell";
             if (isFriend)
                 [friends addObject:user];
             else
-                [othres addObject:user];
+                [others addObject:user];
         }
         [tableview reloadData];
     } failure:^(NSError *error) {
@@ -79,7 +86,7 @@ static NSString *CellIdentifier = @"UserCell";
 
 // UITableViewDataSource & UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (friends == nil || othres == nil)
+    if (friends == nil || others == nil)
         return 0;
     return 2;
 }
@@ -87,7 +94,12 @@ static NSString *CellIdentifier = @"UserCell";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"Friends";
+            if (friends.count == 0)
+                return @"No Friend Yet :(";
+            else if (friends.count == 1)
+                return @"Friend";
+            else
+                return @"Friends";
         case 1:
         default:
             return @"Others";
@@ -105,7 +117,7 @@ static NSString *CellIdentifier = @"UserCell";
         case 0:
             return friends.count;
         case 1:
-            return othres.count;
+            return others.count;
     }
     return 0;
 }
@@ -115,7 +127,7 @@ static NSString *CellIdentifier = @"UserCell";
     UITableViewCell *tableViewcCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (tableViewcCell == nil) {
-        tableViewcCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, 44)];
+        tableViewcCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
         tableViewcCell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         tableViewcCell.textLabel.textColor = [UIColor turquoise:1];
@@ -132,7 +144,7 @@ static NSString *CellIdentifier = @"UserCell";
             user = [friends objectAtIndex:indexPath.row];
             break;
         case 1:
-            user = [othres objectAtIndex:indexPath.row];
+            user = [others objectAtIndex:indexPath.row];
             break;
     }
     tableViewcCell.textLabel.text = user.username;
@@ -146,7 +158,7 @@ static NSString *CellIdentifier = @"UserCell";
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self setCellColor:[UIColor emerald:0.05] ForCell:cell];
+    [self setCellColor:[UIColor grey:1] ForCell:cell];
 }
 
 - (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {

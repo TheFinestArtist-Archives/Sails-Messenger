@@ -189,6 +189,9 @@
     NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
     tabBarController.viewControllers = controllers;
     
+    vc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Chatter" image:nil selectedImage:nil];
+    vc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Room" image:nil selectedImage:nil];
+    
     UINavigationController *navcontroller = [[UINavigationController alloc] initWithRootViewController:tabBarController];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

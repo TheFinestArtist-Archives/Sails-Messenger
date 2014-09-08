@@ -16,9 +16,9 @@
     const id null = [NSNull null];
     const NSString *blank = @"";
     
-    for(NSString *key in self) {
+    for (NSString *key in self) {
         const id object = [self objectForKey:key];
-        if(object == null) {
+        if (object == null) {
             [replaced setObject:blank forKey:key];
         }
     }

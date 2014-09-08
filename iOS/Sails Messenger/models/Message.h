@@ -8,8 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class User;
-@class Chat;
+@class SimpleUser;
+@class SimpleChat;
+
+@interface SimpleMessage : NSObject
+
+@property(assign) NSInteger id;
+@property(strong, nonatomic) NSDate  *createdAt;
+@property(strong, nonatomic) NSDate  *updatedAt;
+@property(strong, nonatomic) NSString  *content;
+@property(assign) NSInteger  chat;
+@property(assign) NSInteger  author;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
+@end
 
 @interface Message : NSObject
 
@@ -17,8 +30,8 @@
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *content;
-@property(strong, nonatomic) Chat  *chat;
-@property(strong, nonatomic) User  *author;
+@property(strong, nonatomic) SimpleChat  *chat;
+@property(strong, nonatomic) SimpleUser  *author;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
