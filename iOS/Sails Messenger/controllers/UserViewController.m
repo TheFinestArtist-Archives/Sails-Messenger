@@ -79,7 +79,7 @@ static NSString *CellIdentifier = @"UserCell";
     for (User *user in [SailsModels allUsers]) {
         BOOL isFriend = NO;
         for (NSObject *userID in me.friends)
-            if ((NSInteger)userID == user.id)
+            if ([(NSString *)userID integerValue]== user.id)
                 isFriend = YES;
         
         if (isFriend)
@@ -140,7 +140,7 @@ static NSString *CellIdentifier = @"UserCell";
         tableViewcCell.textLabel.textColor = [UIColor turquoise:1];
         tableViewcCell.textLabel.font = [UIFont boldSystemFontOfSize:15];
         
-        UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+        UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
         underline.backgroundColor = [UIColor grey:1];
         [tableViewcCell addSubview:underline];
     }
@@ -181,7 +181,7 @@ static NSString *CellIdentifier = @"UserCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SimpleUser *user;
+    User *user;
     switch (indexPath.section) {
         case 0:
             user = [friends objectAtIndex:indexPath.row];
@@ -192,7 +192,7 @@ static NSString *CellIdentifier = @"UserCell";
     }
     
     MessageViewController *viewController = [[MessageViewController alloc] init];
-    viewController.simpleUser = user;
+    viewController.user = user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

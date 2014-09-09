@@ -7,7 +7,6 @@
 //
 
 #import "MessageViewController.h"
-#import "Message.h"
 #import "SailsDefaults.h"
 #import "UIColor+Sails.h"
 #import "SailsAPIs.h"
@@ -17,7 +16,7 @@
 
 @property UITableView *tableview;
 @property User *me;
-@property NSMutableArray *messages;
+@property NSArray *messages;
 
 @end
 
@@ -58,7 +57,7 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     [self.view addSubview:tableview];
     
     me = [SailsDefaults getUser];
-    messages = [NSMutableArray array];
+    [self reloadTableView];
 }
 
 // UIBarButtonItem
@@ -71,15 +70,24 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
 }
 
 - (void)getMessages {
-    if (self.simpleChat == nil)
+    if (self.chat == nil)
         return;
     
-    NSInteger chatID = self.simpleChat.id;
+    NSInteger chatID = self.chat.id;
     [SailsAPIs messageOfChat:chatID
                      success:^(NSArray *chats) {
                          [tableview reloadData];
                      } failure:^(NSError *error) {
                      }];
+}
+
+- (void)reloadTableView {
+    if (self.chat != nil) {
+        messages = [SailsModels messagesOfChat:self.chat.id];
+        [tableview reloadData];
+    } else {
+        messages = [NSArray array];
+    }
 }
 
 // UITableViewDataSource & UITableViewDataSource

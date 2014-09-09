@@ -132,7 +132,7 @@ static NSString *CellIdentifier = @"ChatCell";
         tableViewcCell.textLabel.textColor = [UIColor turquoise:1];
         tableViewcCell.textLabel.font = [UIFont boldSystemFontOfSize:15];
         
-        UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 1)];
+        UIView *underline = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
         underline.backgroundColor = [UIColor grey:1];
         [tableViewcCell addSubview:underline];
     }
@@ -150,11 +150,16 @@ static NSString *CellIdentifier = @"ChatCell";
     NSString *chatterList = @"";
     for (int i = 0; i < chat.chatters.count; i++) {
         User *user = [chat.chatters objectAtIndex:i];
-        if (i == chat.chatters.count - 1)
-            chatterList = [chatterList stringByAppendingString:user.username];
-        else
-            chatterList = [chatterList stringByAppendingString:[NSString stringWithFormat:@"%@, ", user.username]];
+        if (![me.username isEqualToString:user.username]) {
+            if (i == chat.chatters.count - 1)
+                chatterList = [chatterList stringByAppendingString:user.username];
+            else
+                chatterList = [chatterList stringByAppendingString:[NSString stringWithFormat:@"%@, ", user.username]];
+        }
     }
+    
+    if (chatterList.length == 0)
+        chatterList = @"no chatter..";
     tableViewcCell.textLabel.text = chatterList;
     
     return tableViewcCell;
@@ -182,7 +187,7 @@ static NSString *CellIdentifier = @"ChatCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    SimpleChat *chat;
+    Chat *chat;
     switch (indexPath.section) {
         case 0:
             chat = [myChats objectAtIndex:indexPath.row];
@@ -193,7 +198,7 @@ static NSString *CellIdentifier = @"ChatCell";
     }
     
     MessageViewController *viewController = [[MessageViewController alloc] init];
-    viewController.simpleChat = chat;
+    viewController.chat = chat;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

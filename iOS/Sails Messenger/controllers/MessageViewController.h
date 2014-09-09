@@ -11,6 +11,6 @@
 #import "Chat.h"
 
 @interface MessageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property(strong, nonatomic) SimpleUser *simpleUser;
-@property(strong, nonatomic) SimpleChat *simpleChat;
+@property(strong, nonatomic) User *user;
+@property(strong, nonatomic) Chat *chat;
 @end
