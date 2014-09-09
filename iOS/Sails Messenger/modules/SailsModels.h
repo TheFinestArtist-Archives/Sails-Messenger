@@ -17,9 +17,9 @@
 
 @interface SailsModels : NSObject
 
-@property (strong, atomic) NSDictionary *users;
-@property (strong, atomic) NSDictionary *chats;
-@property (strong, atomic) NSDictionary *messages;
+@property (strong, atomic) NSMutableDictionary *users;
+@property (strong, atomic) NSMutableDictionary *chats;
+@property (strong, atomic) NSMutableDictionary *messages;
 
 + (SailsModels *)sharedInstance;
 

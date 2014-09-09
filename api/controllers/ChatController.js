@@ -129,6 +129,7 @@ module.exports = {
 		Chat
 		.find()
 		.sort('id DESC')
+		.populateAll()
 		.exec(function callback(err, chats) {
 			if (err || !chats)
     		return res.send(JSON.stringify(new Array()));

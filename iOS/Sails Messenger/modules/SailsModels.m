@@ -16,9 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         model = [[SailsModels alloc]init];
-        model.users = [NSDictionary dictionary];
-        model.chats = [NSDictionary dictionary];
-        model.messages = [NSDictionary dictionary];
+        model.users = [NSMutableDictionary dictionary];
+        model.chats = [NSMutableDictionary dictionary];
+        model.messages = [NSMutableDictionary dictionary];
     });
     
     return model;
@@ -71,12 +71,7 @@
 
 + (NSArray *)allUsers {
     return [[[self sharedInstance].users allValues] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSInteger userID1 = ((User *)obj1).id;
-        NSInteger userID2 = ((User *)obj2).id;
-        if (userID1 > userID2)
-            return NSOrderedAscending;
-        else
-            return NSOrderedDescending;
+        return [((User *)obj1).username compare:((User *)obj2).username];
     }];
 }
 
@@ -87,7 +82,15 @@
 }
 
 + (NSArray *)messagesOfChat:(NSInteger)chatID {
-    return [NSArray array];
+    NSPredicate *chatPredicate = [NSPredicate predicateWithFormat:@"chat = %ld", chatID];
+    return [[[[self sharedInstance].messages allValues] filteredArrayUsingPredicate:chatPredicate] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger ID1 = ((Message *)obj1).id;
+        NSInteger ID2 = ((Message *)obj2).id;
+        if (ID1 > ID2)
+            return NSOrderedAscending;
+        else
+            return NSOrderedDescending;
+    }];
 }
 
 @end
