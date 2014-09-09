@@ -28,7 +28,7 @@ module.exports = {
 				return res.send(400, error);
 			}
 
-			return res.send(user.toJSON());
+			return res.send(user.toWholeJSON());
 		});
 	},
 

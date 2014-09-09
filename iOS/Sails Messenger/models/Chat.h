@@ -24,7 +24,6 @@
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSArray  *chatters;
-@property(strong, nonatomic) NSArray  *messages;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

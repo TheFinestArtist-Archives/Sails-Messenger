@@ -47,13 +47,6 @@
             [chatters addObject:chatter];
         }
         self.chatters = chatters;
-        
-        NSMutableArray *messages = [NSMutableArray array];
-        for (NSDictionary *dic in [dictionary objectForKey:@"messages"]) {
-            SimpleMessage *message = [[SimpleMessage alloc] initWithDictionary:dic];
-            [messages addObject:message];
-        }
-        self.messages = messages;
     }
     return self;
 }

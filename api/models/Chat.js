@@ -21,37 +21,18 @@ module.exports = {
 
     toJSON: function() {
       var obj = this.toObject();
+      delete obj.chatters;
+      delete obj.messages;
+      return obj;
+    },
+
+    toWholeJSON: function() {
+      var obj = this.toObject();
       obj.chatters = this.chatters;
-      obj.messages = this.messages;
+      delete obj.messages;
       return obj;
     }
 
-  },
-
-  afterCreate: function(values, next) {
-
-    Chat
-    .findOneById(values.id)
-    .populateAll()
-    .exec(function callback(err, chat) {
-    	if (!err && chat)
-		    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toJSON());
-	  });
-
-  	next();
-  },
-
-  afterUpdate: function(values, next) {
-
-    Chat
-    .findOneById(values.id)
-    .populateAll()
-    .exec(function callback(err, chat) {
-    	if (!err && chat)
-		    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toJSON());
-	  });
-	  
-    next();
   }
 
 };

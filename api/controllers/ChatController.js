@@ -60,7 +60,8 @@ module.exports = {
 							if (err || !chat)
 								return res.notFound();
 
-							return res.send(chat.toJSON());
+					    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toWholeJSON());
+							return res.send(chat.toWholeJSON());
 						});
 					});
 				});
@@ -88,7 +89,7 @@ module.exports = {
 					return res.notFound();
 
 				if (getIDs(chat.chatters).indexOf(Number(user.id)) >= 0)
-					return res.send(chat.toJSON());
+					return res.send(chat.toWholeJSON());
 
 				// add friends
 				for (var i = 0; i < chat.chatters.length; i++) {
@@ -116,13 +117,40 @@ module.exports = {
 						if (err || !chat)
 							return res.notFound();
 
-						return res.send(chat.toJSON());
+				    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toWholeJSON());
+						return res.send(chat.toWholeJSON());
 					});
 				});
 			});
 		});
+	},
+
+	messages: function(req, res) {
+		res.contentType('application/json; charset=utf-8');
+		var chat_id = req.param('chat_id');
+
+		Chat
+		.findOneById(chat_id)
+		.populateAll()
+		.exec(function callback(err, chat) {
+			if (err || !chat)
+				return res.notFound();
+
+  		Message
+  		.findById(getIDs(chat.messages))
+			.populateAll()
+  		.sort('id ASC')
+  		.exec(function callback(err, messages) {
+  			if (err || !messages)
+	    		return res.send(JSON.stringify(new Array()));
+
+	    	for (var i = 0; i < messages; i++)
+	    		messages[i] = messages[i].toWholeJSON();
+		  	return res.send(messages);
+	    });
+		});
 	}
-	
+
 };
 
 var getIDs = function(jsonArray) {

@@ -35,6 +35,13 @@ module.exports = {
 
     toJSON: function() {
       var obj = this.toObject();
+      delete obj.chats;
+      delete obj.friends;
+      return obj;
+    },
+
+    toWholeJSON: function() {
+      var obj = this.toObject();
       obj.chats = this.chats;
       obj.friends = this.friends;
       return obj;
@@ -56,7 +63,7 @@ module.exports = {
     .populateAll()
     .exec(function callback(err, user) {
     	if (!err && user)
-		    sails.sockets.broadcast('Users', 'user', user.toJSON());
+		    sails.sockets.broadcast('Users', 'user', user.toWholeJSON());
 	  });
 
   	next();
@@ -70,7 +77,7 @@ module.exports = {
     .populateAll()
     .exec(function callback(err, user) {
     	if (!err && user)
-		    sails.sockets.broadcast('User#' + user.id, 'user', user.toJSON());
+		    sails.sockets.broadcast('User#' + user.id, 'user', user.toWholeJSON());
 	  });
 
     next();
