@@ -20,6 +20,7 @@
 		D432387119B0006700A79C73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D432384D19B0006700A79C73 /* UIKit.framework */; };
 		D432387919B0006700A79C73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D432387719B0006700A79C73 /* InfoPlist.strings */; };
 		D432387B19B0006700A79C73 /* Sails_MessengerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D432387A19B0006700A79C73 /* Sails_MessengerTests.m */; };
+		D43CAB7D19BEDD4E00A02464 /* SailsModels.m in Sources */ = {isa = PBXBuildFile; fileRef = D43CAB7C19BEDD4E00A02464 /* SailsModels.m */; };
 		D476657019B009000053D030 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D476656F19B009000053D030 /* icon@2x.png */; };
 		D476657919B013C00053D030 /* SailsDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657819B013C00053D030 /* SailsDefaults.m */; };
 		D476657C19B013D70053D030 /* SailsAPIs.m in Sources */ = {isa = PBXBuildFile; fileRef = D476657B19B013D70053D030 /* SailsAPIs.m */; };
@@ -109,6 +110,8 @@
 		D432387619B0006700A79C73 /* Sails MessengerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sails MessengerTests-Info.plist"; sourceTree = "<group>"; };
 		D432387819B0006700A79C73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D432387A19B0006700A79C73 /* Sails_MessengerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sails_MessengerTests.m; sourceTree = "<group>"; };
+		D43CAB7B19BEDD4E00A02464 /* SailsModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsModels.h; sourceTree = "<group>"; };
+		D43CAB7C19BEDD4E00A02464 /* SailsModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsModels.m; sourceTree = "<group>"; };
 		D476656F19B009000053D030 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		D476657719B013C00053D030 /* SailsDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SailsDefaults.h; sourceTree = "<group>"; };
 		D476657819B013C00053D030 /* SailsDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SailsDefaults.m; sourceTree = "<group>"; };
@@ -417,6 +420,8 @@
 				D476657B19B013D70053D030 /* SailsAPIs.m */,
 				D476657D19B013EC0053D030 /* SocketAgent.h */,
 				D476657E19B013EC0053D030 /* SocketAgent.m */,
+				D43CAB7B19BEDD4E00A02464 /* SailsModels.h */,
+				D43CAB7C19BEDD4E00A02464 /* SailsModels.m */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -998,6 +1003,7 @@
 				D476658219B013F60053D030 /* User.m in Sources */,
 				D432385A19B0006700A79C73 /* AppDelegate.m in Sources */,
 				D4A7097419BC31CD00D8C2AF /* CatchPointViewController.m in Sources */,
+				D43CAB7D19BEDD4E00A02464 /* SailsModels.m in Sources */,
 				D4A7098D19BC5B3C00D8C2AF /* NSDate+Sails.m in Sources */,
 				D4A7097719BC31D800D8C2AF /* SignViewController.m in Sources */,
 				D476657C19B013D70053D030 /* SailsAPIs.m in Sources */,

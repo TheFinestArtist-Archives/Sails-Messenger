@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <socket.IO/SocketIO.h>
 
-@interface SocketAgent : NSObject <SocketIODelegate> {
-    SocketIO *socketIO;
-    NSInteger reconnectTry;
-}
+@interface SocketAgent : NSObject <SocketIODelegate>
+
+@property (strong, atomic) SocketIO *socketIO;
+@property (assign) NSInteger reconnectTry;
 
 + (SocketAgent *)sharedInstance;
 

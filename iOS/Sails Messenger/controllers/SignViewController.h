@@ -14,5 +14,5 @@ typedef NS_ENUM(NSInteger, SignType) {
 };
 
 @interface SignViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
-    @property(nonatomic) SignType signType;
+@property(nonatomic) SignType signType;
 @end

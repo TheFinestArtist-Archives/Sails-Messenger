@@ -54,6 +54,20 @@ module.exports = {
 
 			return res.send(user.toWholeJSON());
 		});
+	},
+
+	list: function(req, res) {
+		User
+		.find()
+		.sort('username ASC')
+		.exec(function callback(err, users) {
+			if (err || !users)
+    		return res.send(JSON.stringify(new Array()));
+
+    	for (var i = 0; i < users.length; i++)
+    		users[i] = users[i].toWholeJSON();
+	  	return res.send(users);
+		});
 	}
 
 };

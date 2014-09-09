@@ -42,12 +42,16 @@
               failure:(void (^)(NSError *error))failure;
 
 + (void)chatJoinWith:(NSString *)username
-              chatID:(int)chatID
+              chatID:(NSInteger)chatID
              success:(void (^)(Chat *chat))success
              failure:(void (^)(NSError *error))failure;
 
-+ (void)postMessageWith:(int)userID
-                 chatID:(int)chatID
++ (void)messageOfChat:(NSInteger)chatID
+              success:(void (^)(NSArray *chats))success
+              failure:(void (^)(NSError *error))failure;
+
++ (void)postMessageWith:(NSInteger)userID
+                 chatID:(NSInteger)chatID
                 content:(NSString *)content
                 success:(void (^)(Message *message))success
                 failure:(void (^)(NSError *error))failure;

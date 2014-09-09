@@ -195,12 +195,12 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
 }
 
 + (void)chatJoinWith:(NSString *)username
-              chatID:(int)chatID
+              chatID:(NSInteger)chatID
              success:(void (^)(Chat *chat))success
              failure:(void (^)(NSError *error))failure {
     
     NSDictionary *params = @{@"username" : username,
-                             @"chat_id" : [NSString stringWithFormat:@"%ld", (long)chatID]};
+                             @"chat_id" : [NSString stringWithFormat:@"%ld", chatID]};
     
     [[self sharedAFManager] PUT:[MESSENGER_URL stringByAppendingString:@"/chat/join"]
                       parameters:params
@@ -216,15 +216,39 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                          }];
 }
 
-+ (void)postMessageWith:(int)userID
-                 chatID:(int)chatID
++ (void)messageOfChat:(NSInteger)chatID
+              success:(void (^)(NSArray *chats))success
+              failure:(void (^)(NSError *error))failure {
+    
+    NSDictionary *params = @{@"chat_id" : [NSString stringWithFormat:@"%ld", chatID]};
+    
+    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/chat/message"]
+                     parameters:params
+                        success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                                NSMutableArray *chats = [NSMutableArray array];
+                                for (NSDictionary *dic in responseObject) {
+                                    Chat *chat = [[Chat alloc] initWithDictionary:dic];
+                                    [chats addObject:chat];
+                                }
+                                dispatch_async( dispatch_get_main_queue(), ^{
+                                    success(chats);
+                                });
+                            });
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            failure(error);
+                        }];
+}
+
++ (void)postMessageWith:(NSInteger)userID
+                 chatID:(NSInteger)chatID
                 content:(NSString *)content
                 success:(void (^)(Message *message))success
                 failure:(void (^)(NSError *error))failure {
     
     NSDictionary *params = @{@"content" : content,
-                             @"author" : [NSString stringWithFormat:@"%ld", (long)userID],
-                             @"chat" : [NSString stringWithFormat:@"%ld", (long)chatID]};
+                             @"author" : [NSString stringWithFormat:@"%ld", userID],
+                             @"chat" : [NSString stringWithFormat:@"%ld", chatID]};
     
     [[self sharedAFManager] POST:[MESSENGER_URL stringByAppendingString:@"/message/post"]
                       parameters:params

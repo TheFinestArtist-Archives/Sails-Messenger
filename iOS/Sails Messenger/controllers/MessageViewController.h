@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "Chat.h"
 
-@interface MessageViewController : UIViewController
-
+@interface MessageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property(strong, nonatomic) SimpleUser *simpleUser;
+@property(strong, nonatomic) SimpleChat *simpleChat;
 @end

@@ -125,6 +125,20 @@ module.exports = {
 		});
 	},
 
+	list: function(req, res) {
+		Chat
+		.find()
+		.sort('id DESC')
+		.exec(function callback(err, chats) {
+			if (err || !chats)
+    		return res.send(JSON.stringify(new Array()));
+
+    	for (var i = 0; i < chats.length; i++)
+    		chats[i] = chats[i].toWholeJSON();
+	  	return res.send(chats);
+		});
+	},
+
 	messages: function(req, res) {
 		res.contentType('application/json; charset=utf-8');
 		var chat_id = req.param('chat_id');

@@ -11,7 +11,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 
 =================
 ###User
-####get : /user => SimpleUserJSON LIST
+####get : /user/list => WholeUserJSON LIST
 
 ###User
 ####get : /user/signin => WholeUserJSON
@@ -29,7 +29,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
     password (hashedg)
 
 ###Chat
-####get : /chat => SimpleChatJSON LIST
+####get : /chat/list => WholeChatJSON LIST
 
 ###Chat
 ####post : /chat/start => WholeChatJSON
@@ -40,7 +40,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 	username
 	chat_id
 
-####put : /chat/message => WholeMessageJSON
+####put : /chat/messages => WholeMessageJSON LIST
 	username
 	chat_id
 

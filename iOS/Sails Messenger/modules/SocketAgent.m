@@ -19,6 +19,8 @@
 
 @implementation SocketAgent
 
+@synthesize socketIO, reconnectTry;
+
 + (SocketAgent *)sharedInstance {
     static SocketAgent *agent;
     

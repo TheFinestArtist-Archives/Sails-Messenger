@@ -11,6 +11,7 @@
 #import "User.h"
 #import "SailsDefaults.h"
 #import "SailsAPIs.h"
+#import "MessageViewController.h"
 
 @interface UserViewController ()
 
@@ -127,8 +128,9 @@ static NSString *CellIdentifier = @"UserCell";
     UITableViewCell *tableViewcCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (tableViewcCell == nil) {
-        tableViewcCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+        tableViewcCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         tableViewcCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        tableViewcCell.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
         
         tableViewcCell.textLabel.textColor = [UIColor turquoise:1];
         tableViewcCell.textLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -169,6 +171,24 @@ static NSString *CellIdentifier = @"UserCell";
 - (void)setCellColor:(UIColor *)color ForCell:(UITableViewCell *)cell {
     cell.contentView.backgroundColor = color;
     cell.backgroundColor = color;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SimpleUser *user;
+    switch (indexPath.section) {
+        case 0:
+            user = [friends objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            user = [others objectAtIndex:indexPath.row];
+            break;
+    }
+    
+    MessageViewController *viewController = [[MessageViewController alloc] init];
+    viewController.simpleUser = user;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end
