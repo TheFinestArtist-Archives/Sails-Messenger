@@ -9,13 +9,7 @@
 #import "SocketAgent.h"
 #import "SocketIOPacket.h"
 #import "SailsDefaults.h"
-#import "User.h"
-#import "Chat.h"
-#import "Message.h"
-
-#define UserReceived @"user_received"
-#define ChatReceived @"chat_received"
-#define MessageReceived @"message_received"
+#import "SailsModels.h"
 
 @implementation SocketAgent
 
@@ -78,17 +72,17 @@
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"user"]) {
         User *user = [[User alloc] initWithDictionary:[data objectForKey:@"args"][0]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:UserReceived object:user];
+        [SailsModels setUser:user];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"chat"]) {
         Chat *chat = [[Chat alloc] initWithDictionary:[data objectForKey:@"args"][0]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ChatReceived object:chat];
+        [SailsModels setChat:chat];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"message"]) {
         Message *message = [[Message alloc] initWithDictionary:[data objectForKey:@"args"][0]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:MessageReceived object:message];
+        [SailsModels setMessage:message];
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import "ChatViewController.h"
 #import "UIColor+Sails.h"
-#import "User.h"
+#import "SailsModels.h"
 #import "SailsDefaults.h"
 #import "SailsAPIs.h"
 #import "MessageViewController.h"
@@ -46,6 +46,7 @@ static NSString *CellIdentifier = @"ChatCell";
     [self.view addSubview:tableview];
     
     me = [SailsDefaults getUser];
+    [self reloadTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,27 +60,31 @@ static NSString *CellIdentifier = @"ChatCell";
     self.tabBarController.navigationItem.titleView = titlelabel;
     
     [SailsAPIs chatListInSuccess:^(NSArray *chats) {
-        myChats = [NSMutableArray array];
-        others = [NSMutableArray array];
-        for (SimpleChat *chat in chats) {
-            BOOL isIncluded = NO;
-            for (SimpleChat *myChat in me.chats)
-                if (myChat.id == chat.id)
-                    isIncluded = YES;
-            
-            if (isIncluded)
-                [myChats addObject:chat];
-            else
-                [others addObject:chat];
-        }
-        [tableview reloadData];
+        [self reloadTableView];
     } failure:^(NSError *error) {
     }];
 }
 
+- (void)reloadTableView {
+    myChats = [NSMutableArray array];
+    others = [NSMutableArray array];
+    for (SimpleChat *chat in [SailsModels allChats]) {
+        BOOL isIncluded = NO;
+        for (Chat *myChat in me.chats)
+            if (myChat.id == chat.id)
+                isIncluded = YES;
+        
+        if (isIncluded)
+            [myChats addObject:chat];
+        else
+            [others addObject:chat];
+    }
+    [tableview reloadData];
+}
+
 // UITableViewDataSource & UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (myChats == nil || others == nil)
+    if (myChats.count == 0 && others.count == 0)
         return 0;
     return 2;
 }

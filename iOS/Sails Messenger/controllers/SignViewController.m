@@ -30,6 +30,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBar.translucent = NO;
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     switch (signType) {

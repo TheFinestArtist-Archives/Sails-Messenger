@@ -11,6 +11,10 @@
 #import "Chat.h"
 #import "Message.h"
 
+#define UsersUpdated @"users_updated"
+#define ChatsUpdated @"chats_updated"
+#define MessagesUpdated @"messages_updated"
+
 @interface SailsModels : NSObject
 
 @property (strong, atomic) NSDictionary *users;
@@ -19,19 +23,21 @@
 
 + (SailsModels *)sharedInstance;
 
-+ updateUsers:(NSArray *)users;
-+ updateChats:(NSArray *)chats;
-+ updateMessages:(NSArray *)messages;
++ (void)updateUsers:(NSArray *)users;
++ (void)updateChats:(NSArray *)chats;
++ (void)updateMessages:(NSArray *)messages;
 
-+ setUser:(User *)user;
++ (void)setUser:(User *)user;
 + (User *)getUser:(NSInteger)userID;
 
-+ setChat:(Chat *)chat;
++ (void)setChat:(Chat *)chat;
 + (Chat *)getChat:(NSInteger)chatID;
 
-+ setMessage:(Message *)message;
++ (void)setMessage:(Message *)message;
 + (Message *)getMessage:(NSInteger)messageID;
 
-+ (NSDictionary *)messagesOfChat:(NSInteger)chatID;
++ (NSArray *)allUsers;
++ (NSArray *)allChats;
++ (NSArray *)messagesOfChat:(NSInteger)chatID;
 
 @end

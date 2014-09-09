@@ -8,9 +8,9 @@
 
 #import "UserViewController.h"
 #import "UIColor+Sails.h"
-#import "User.h"
 #import "SailsDefaults.h"
 #import "SailsAPIs.h"
+#import "SailsModels.h"
 #import "MessageViewController.h"
 
 @interface UserViewController ()
@@ -46,6 +46,7 @@ static NSString *CellIdentifier = @"UserCell";
     [self.view addSubview:tableview];
     
     me = [SailsDefaults getUser];
+    [self reloadTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,32 +63,36 @@ static NSString *CellIdentifier = @"UserCell";
                          password:me.password
                           success:^(User *user) {
                               me = user;
-                              [tableview reloadData];
+                              [self reloadTableView];
                           } failure:^(NSError *error) {
                           }];
     
     [SailsAPIs userListInSuccess:^(NSArray *users) {
-        friends = [NSMutableArray array];
-        others = [NSMutableArray array];
-        for (SimpleUser *user in users) {
-            BOOL isFriend = NO;
-            for (NSObject *userID in me.friends)
-                if ((NSInteger)userID == user.id)
-                    isFriend = YES;
-            
-            if (isFriend)
-                [friends addObject:user];
-            else
-                [others addObject:user];
-        }
-        [tableview reloadData];
+        [self reloadTableView];
     } failure:^(NSError *error) {
     }];
 }
 
+- (void)reloadTableView {
+    friends = [NSMutableArray array];
+    others = [NSMutableArray array];
+    for (User *user in [SailsModels allUsers]) {
+        BOOL isFriend = NO;
+        for (NSObject *userID in me.friends)
+            if ((NSInteger)userID == user.id)
+                isFriend = YES;
+        
+        if (isFriend)
+            [friends addObject:user];
+        else
+            [others addObject:user];
+    }
+    [tableview reloadData];
+}
+
 // UITableViewDataSource & UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (friends == nil || others == nil)
+    if (friends.count == 0 && others.count == 0)
         return 0;
     return 2;
 }

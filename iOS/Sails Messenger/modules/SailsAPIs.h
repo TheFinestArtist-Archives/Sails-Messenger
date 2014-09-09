@@ -47,7 +47,7 @@
              failure:(void (^)(NSError *error))failure;
 
 + (void)messageOfChat:(NSInteger)chatID
-              success:(void (^)(NSArray *chats))success
+              success:(void (^)(NSArray *messages))success
               failure:(void (^)(NSError *error))failure;
 
 + (void)postMessageWith:(NSInteger)userID

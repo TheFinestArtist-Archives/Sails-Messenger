@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "AFNetworkActivityLogger.h"
 #import "SailsDefaults.h"
+#import "SailsModels.h"
 
 static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
 
@@ -63,15 +64,16 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
 + (void)userListInSuccess:(void (^)(NSArray *users))success
                   failure:(void (^)(NSError *error))failure {
     
-    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/user"]
+    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/user/list"]
                      parameters:nil
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *users = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
+                                    User *user = [[User alloc] initWithDictionary:dic];
                                     [users addObject:user];
                                 }
+                                [SailsModels updateUsers:users];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(users);
                                 });
@@ -153,15 +155,16 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
 + (void)chatListInSuccess:(void (^)(NSArray *chats))success
                   failure:(void (^)(NSError *error))failure {
     
-    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/chat"]
+    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/chat/list"]
                      parameters:nil
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *chats = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    SimpleChat *chat = [[SimpleChat alloc] initWithDictionary:dic];
+                                    Chat *chat = [[Chat alloc] initWithDictionary:dic];
                                     [chats addObject:chat];
                                 }
+                                [SailsModels updateChats:chats];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(chats);
                                 });
@@ -185,6 +188,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 Chat *chat = [[Chat alloc] initWithDictionary:responseObject];
+                                [SailsModels setChat:chat];
                                 dispatch_async( dispatch_get_main_queue(), ^{
                                     success(chat);
                                 });
@@ -207,6 +211,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                  Chat *chat = [[Chat alloc] initWithDictionary:responseObject];
+                                 [SailsModels setChat:chat];
                                  dispatch_async( dispatch_get_main_queue(), ^{
                                      success(chat);
                                  });
@@ -217,7 +222,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
 }
 
 + (void)messageOfChat:(NSInteger)chatID
-              success:(void (^)(NSArray *chats))success
+              success:(void (^)(NSArray *messages))success
               failure:(void (^)(NSError *error))failure {
     
     NSDictionary *params = @{@"chat_id" : [NSString stringWithFormat:@"%ld", chatID]};
@@ -226,13 +231,14 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                                NSMutableArray *chats = [NSMutableArray array];
+                                NSMutableArray *messages = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    Chat *chat = [[Chat alloc] initWithDictionary:dic];
-                                    [chats addObject:chat];
+                                    Message *message = [[Message alloc] initWithDictionary:dic];
+                                    [messages addObject:message];
                                 }
+                                [SailsModels updateMessages:messages];
                                 dispatch_async( dispatch_get_main_queue(), ^{
-                                    success(chats);
+                                    success(messages);
                                 });
                             });
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -255,6 +261,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                  Message *message = [[Message alloc] initWithDictionary:responseObject];
+                                 [SailsModels setMessage:message];
                                  dispatch_async( dispatch_get_main_queue(), ^{
                                      success(message);
                                  });
