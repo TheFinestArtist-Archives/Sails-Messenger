@@ -144,7 +144,7 @@ module.exports = {
   			if (err || !messages)
 	    		return res.send(JSON.stringify(new Array()));
 
-	    	for (var i = 0; i < messages; i++)
+	    	for (var i = 0; i < messages.length; i++)
 	    		messages[i] = messages[i].toWholeJSON();
 		  	return res.send(messages);
 	    });

@@ -40,6 +40,10 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 	username
 	chat_id
 
+####put : /chat/message => WholeMessageJSON
+	username
+	chat_id
+
 ###Message
 ####post : /message/post => WholeMessageJSON
 	content

@@ -30,7 +30,7 @@
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *content;
-@property(strong, nonatomic) SimpleChat  *chat;
+@property(assign) NSInteger  chat;
 @property(strong, nonatomic) SimpleUser  *author;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;

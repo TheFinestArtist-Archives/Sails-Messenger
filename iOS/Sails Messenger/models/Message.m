@@ -44,7 +44,7 @@
         self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
         self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.content = [dictionary objectForKey:@"content"];
-        self.chat = [[SimpleChat alloc] initWithDictionary:[dictionary objectForKey:@"chat"]];
+        self.chat = [[dictionary objectForKey:@"chat"] integerValue];
         self.author = [[SimpleUser alloc] initWithDictionary:[dictionary objectForKey:@"author"]];
     }
     return self;
