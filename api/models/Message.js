@@ -33,7 +33,8 @@ module.exports = {
     },
 
     toWholeJSON: function() {
-      var obj = this.toObject();
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
       obj.chat = this.chat;
       obj.author = this.author;
       return obj;

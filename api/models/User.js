@@ -41,7 +41,8 @@ module.exports = {
     },
 
     toWholeJSON: function() {
-      var obj = this.toObject();
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
       obj.chats = this.chats;
       obj.friends = this.friends;
       return obj;

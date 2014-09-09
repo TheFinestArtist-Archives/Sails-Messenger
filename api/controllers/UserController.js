@@ -5,6 +5,32 @@ var PasswordHash = require('password-hash');
 
 module.exports = {
 
+	signup: function(req, res) {
+		res.contentType('application/json; charset=utf-8');
+		var username = req.param('username');
+		var password = req.param('password');
+
+		User
+		.create({
+			username: username,
+			password: password
+		})
+		.exec(function callback(err, user) {
+			if (err || !user)
+				res.badRequest();
+
+			User
+			.findOneById(user.id)
+			.populateAll()
+			.exec(function callback(err, user) {
+				if (err || !user)
+					res.notFound();
+
+				return res.send(user.toWholeJSON());
+			});
+		});
+	},
+
 	signin: function(req, res) {
 		res.contentType('application/json; charset=utf-8');
 		var username = req.param('username');

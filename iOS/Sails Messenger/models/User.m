@@ -24,7 +24,6 @@
         self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
         self.username = [dictionary objectForKey:@"username"];
         self.password = [dictionary objectForKey:@"password"];
-        self.friends = [dictionary objectForKey:@"friends"];
     }
     return self;
 }

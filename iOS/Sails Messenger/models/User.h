@@ -15,7 +15,6 @@
 @property(strong, nonatomic) NSDate  *updatedAt;
 @property(strong, nonatomic) NSString  *username;
 @property(strong, nonatomic) NSString  *password;
-@property(strong, nonatomic) NSArray  *friends;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -69,7 +69,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *users = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    User *user = [[User alloc] initWithDictionary:dic];
+                                    SimpleUser *user = [[SimpleUser alloc] initWithDictionary:dic];
                                     [users addObject:user];
                                 }
                                 dispatch_async( dispatch_get_main_queue(), ^{
@@ -89,7 +89,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
     NSDictionary *params = @{@"username" : username,
                              @"password" : password};
     
-    [[self sharedAFManager] POST:[MESSENGER_URL stringByAppendingString:@"/user"]
+    [[self sharedAFManager] POST:[MESSENGER_URL stringByAppendingString:@"/user/signup"]
                      parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -159,7 +159,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                 NSMutableArray *chats = [NSMutableArray array];
                                 for (NSDictionary *dic in responseObject) {
-                                    Chat *chat = [[Chat alloc] initWithDictionary:dic];
+                                    SimpleChat *chat = [[SimpleChat alloc] initWithDictionary:dic];
                                     [chats addObject:chat];
                                 }
                                 dispatch_async( dispatch_get_main_queue(), ^{
@@ -226,7 +226,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
                              @"author" : [NSString stringWithFormat:@"%ld", (long)userID],
                              @"chat" : [NSString stringWithFormat:@"%ld", (long)chatID]};
     
-    [[self sharedAFManager] POST:[MESSENGER_URL stringByAppendingString:@"/message"]
+    [[self sharedAFManager] POST:[MESSENGER_URL stringByAppendingString:@"/message/post"]
                       parameters:params
                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
                              dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

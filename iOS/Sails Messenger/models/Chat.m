@@ -23,6 +23,13 @@
         self.id = [[dictionary objectForKey:@"id"] integerValue];
         self.createdAt = [NSDate dateFromString:[dictionary objectForKey:@"createdAt"]];
         self.updatedAt = [NSDate dateFromString:[dictionary objectForKey:@"updatedAt"]];
+        
+        NSMutableArray *chatters = [NSMutableArray array];
+        for (NSDictionary *dic in [dictionary objectForKey:@"chatters"]) {
+            SimpleUser *chatter = [[SimpleUser alloc] initWithDictionary:dic];
+            [chatters addObject:chatter];
+        }
+        self.chatters = chatters;
     }
     return self;
 }

@@ -13,6 +13,7 @@
 @property(assign) NSInteger id;
 @property(strong, nonatomic) NSDate  *createdAt;
 @property(strong, nonatomic) NSDate  *updatedAt;
+@property(strong, nonatomic) NSArray  *chatters;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

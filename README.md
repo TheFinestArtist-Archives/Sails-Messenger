@@ -19,7 +19,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
     password
 
 ###User
-####post : /user => SimpleUserJSON
+####post : /user/signup => WholeUserJSON
     username
     password
 
@@ -41,7 +41,7 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 	chat_id
 
 ###Message
-####post : /message => SimpleMessageJSON
+####post : /message/post => WholeMessageJSON
 	content
 	author
 	chat

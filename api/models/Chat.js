@@ -21,13 +21,14 @@ module.exports = {
 
     toJSON: function() {
       var obj = this.toObject();
-      delete obj.chatters;
+      obj.chatters = this.chatters;
       delete obj.messages;
       return obj;
     },
 
     toWholeJSON: function() {
-      var obj = this.toObject();
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
       obj.chatters = this.chatters;
       delete obj.messages;
       return obj;

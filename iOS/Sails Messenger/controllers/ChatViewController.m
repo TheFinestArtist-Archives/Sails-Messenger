@@ -60,9 +60,9 @@ static NSString *CellIdentifier = @"ChatCell";
     [SailsAPIs chatListInSuccess:^(NSArray *chats) {
         myChats = [NSMutableArray array];
         others = [NSMutableArray array];
-        for (Chat *chat in chats) {
+        for (SimpleChat *chat in chats) {
             BOOL isIncluded = NO;
-            for (Chat *myChat in me.chats)
+            for (SimpleChat *myChat in me.chats)
                 if (myChat.id == chat.id)
                     isIncluded = YES;
             
@@ -130,7 +130,7 @@ static NSString *CellIdentifier = @"ChatCell";
         [tableViewcCell addSubview:underline];
     }
     
-    Chat *chat;
+    SimpleChat *chat;
     switch (indexPath.section) {
         case 0:
             chat = [myChats objectAtIndex:indexPath.row];

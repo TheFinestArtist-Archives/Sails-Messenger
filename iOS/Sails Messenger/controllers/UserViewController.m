@@ -68,7 +68,7 @@ static NSString *CellIdentifier = @"UserCell";
     [SailsAPIs userListInSuccess:^(NSArray *users) {
         friends = [NSMutableArray array];
         others = [NSMutableArray array];
-        for (User *user in users) {
+        for (SimpleUser *user in users) {
             BOOL isFriend = NO;
             for (NSObject *userID in me.friends)
                 if ((NSInteger)userID == user.id)
@@ -138,7 +138,7 @@ static NSString *CellIdentifier = @"UserCell";
         [tableViewcCell addSubview:underline];
     }
     
-    User *user;
+    SimpleUser *user;
     switch (indexPath.section) {
         case 0:
             user = [friends objectAtIndex:indexPath.row];
