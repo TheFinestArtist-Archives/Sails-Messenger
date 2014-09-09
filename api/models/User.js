@@ -68,20 +68,6 @@ module.exports = {
 	  });
 
   	next();
-  },
-
-  afterUpdate: function(values, next) {
-
-    // Self Update
-    User
-    .findOneById(values.id)
-    .populateAll()
-    .exec(function callback(err, user) {
-    	if (!err && user)
-		    sails.sockets.broadcast('User#' + user.id, 'user', user.toWholeJSON());
-	  });
-
-    next();
   }
 
 };

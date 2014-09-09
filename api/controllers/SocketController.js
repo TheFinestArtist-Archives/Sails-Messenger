@@ -22,9 +22,6 @@ module.exports = {
 			// User Create
 	    sails.sockets.join(req.socket, 'Users');
 
-	    // Self Update
-	    sails.sockets.join(req.socket, 'User#' + user.id);
-
 	    // My Chat Room
 			for (var i = 0; i < user.chats.length; i++)
 		    sails.sockets.join(req.socket, 'Chats#' + user.chats[i].id);

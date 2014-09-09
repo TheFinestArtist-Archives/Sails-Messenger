@@ -17,7 +17,6 @@
 @interface SignViewController ()
 
 @property NSString *title;
-@property UITableView *tableview;
 @property UIScreen *mainScreen;
 @property UITextField *usernameField;
 @property UITextField *passwordField;
@@ -26,7 +25,7 @@
 
 @implementation SignViewController
 
-@synthesize signType, title, tableview, mainScreen, usernameField, passwordField;
+@synthesize signType, title, usernameField, passwordField;
 
 - (void)viewDidLoad
 {
@@ -58,14 +57,9 @@
     UIBarButtonItem *sign = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:@selector(sign:)];
     self.navigationItem.rightBarButtonItem = sign;
     
-    mainScreen = [UIScreen mainScreen];
-    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, mainScreen.bounds.size.height)];
-    tableview.backgroundColor = [UIColor whiteColor];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableview];
+    super.tableView.backgroundColor = [UIColor whiteColor];
+    super.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,7 +72,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *tableViewcCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, mainScreen.bounds.size.width, 44)];
+    UITableViewCell *tableViewcCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     tableViewcCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     tableViewcCell.textLabel.textColor = [UIColor turquoise:1];
@@ -185,8 +179,8 @@
 - (void)showTabView {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     
-    UserViewController* vc1 = [[UserViewController alloc] init];
-    ChatViewController* vc2 = [[ChatViewController alloc] init];
+    UserViewController* vc1 = [[UserViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ChatViewController* vc2 = [[ChatViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
     tabBarController.viewControllers = controllers;

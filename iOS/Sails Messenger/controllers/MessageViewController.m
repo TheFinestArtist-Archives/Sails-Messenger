@@ -14,7 +14,6 @@
 
 @interface MessageViewController ()
 
-@property UITableView *tableview;
 @property User *me;
 @property NSArray *messages;
 
@@ -22,7 +21,7 @@
 
 @implementation MessageViewController
 
-@synthesize tableview, me, messages;
+@synthesize me, messages;
 
 static NSString *MyCellIdentifier = @"MyMessageCell";
 static NSString *OtherCellIdentifier = @"OtherMessageCell";
@@ -46,15 +45,9 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    tableview = [[UITableView alloc] initWithFrame:self.view.bounds
-                                             style:UITableViewStyleGrouped];
-    tableview.backgroundColor = [UIColor whiteColor];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.view addSubview:tableview];
+    super.tableView.backgroundColor = [UIColor whiteColor];
+    super.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     me = [SailsDefaults getUser];
     [self reloadTableView];
@@ -76,18 +69,18 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     NSInteger chatID = self.chat.id;
     [SailsAPIs messageOfChat:chatID
                      success:^(NSArray *chats) {
-                         [tableview reloadData];
+                         [self reloadTableView];
                      } failure:^(NSError *error) {
                      }];
 }
 
 - (void)reloadTableView {
-    if (self.chat != nil) {
+    if (self.chat != nil)
         messages = [SailsModels messagesOfChat:self.chat.id];
-        [tableview reloadData];
-    } else {
+    else
         messages = [NSArray array];
-    }
+
+    [super.tableView reloadData];
 }
 
 // UITableViewDataSource & UITableViewDataSource
@@ -108,20 +101,53 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
         tableViewcCell = [tableView dequeueReusableCellWithIdentifier:MyCellIdentifier];
         
         if (tableViewcCell == nil) {
-            tableViewcCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:MyCellIdentifier];
+            tableViewcCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:MyCellIdentifier];
             tableViewcCell.selectionStyle = UITableViewCellSelectionStyleNone;
             tableViewcCell.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
-            
-            tableViewcCell.textLabel.textColor = [UIColor black:1];
-            tableViewcCell.textLabel.font = [UIFont boldSystemFontOfSize:12];
         }
         
         tableViewcCell.textLabel.text = message.content;
     } else {
         tableViewcCell = [tableView dequeueReusableCellWithIdentifier:OtherCellIdentifier];
+        
+        if (tableViewcCell == nil) {
+            tableViewcCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:OtherCellIdentifier];
+            tableViewcCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            tableViewcCell.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+        }
+        
+        if (message.author != nil && message.author.username != nil)
+            tableViewcCell.textLabel.text = message.author.username;
+        else
+            tableViewcCell.textLabel.text = @"deleted user";
+        
+        tableViewcCell.detailTextLabel.text = message.content;
     }
     
     return tableViewcCell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Message *message = [messages objectAtIndex:indexPath.row];
+    if (message.author != nil && message.author.id == me.id) {
+        cell.textLabel.textColor = [UIColor black:1];
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.backgroundColor = [UIColor emerald:0.7];
+        cell.textLabel.layer.cornerRadius = 4;
+        cell.textLabel.clipsToBounds = YES;
+        [cell.textLabel sizeToFit];
+    } else {
+        cell.textLabel.textColor = [UIColor turquoise:1];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:12];
+        
+        cell.detailTextLabel.textColor = [UIColor black:1];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        cell.detailTextLabel.backgroundColor = [UIColor grey:1];
+        cell.detailTextLabel.layer.cornerRadius = 4;
+        cell.detailTextLabel.clipsToBounds = YES;
+        [cell.detailTextLabel sizeToFit];
+    }
 }
 
 @end

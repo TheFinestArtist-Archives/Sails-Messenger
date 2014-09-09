@@ -13,6 +13,6 @@ typedef NS_ENUM(NSInteger, SignType) {
     LOG_IN,
 };
 
-@interface SignViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SignViewController : UITableViewController <UITextFieldDelegate>
 @property(nonatomic) SignType signType;
 @end

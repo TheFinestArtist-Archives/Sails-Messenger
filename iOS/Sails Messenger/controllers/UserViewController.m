@@ -15,7 +15,6 @@
 
 @interface UserViewController ()
 
-@property UITableView *tableview;
 @property User *me;
 @property NSMutableArray *friends;
 @property NSMutableArray *others;
@@ -24,7 +23,7 @@
 
 @implementation UserViewController
 
-@synthesize tableview, me, friends, others;
+@synthesize me, friends, others;
 
 static NSString *CellIdentifier = @"UserCell";
 
@@ -35,15 +34,8 @@ static NSString *CellIdentifier = @"UserCell";
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    tableview = [[UITableView alloc] initWithFrame:self.view.bounds
-                                             style:UITableViewStyleGrouped];
-    tableview.backgroundColor = [UIColor whiteColor];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.view addSubview:tableview];
+    super.tableView.backgroundColor = [UIColor whiteColor];
+    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     me = [SailsDefaults getUser];
     [self reloadTableView];
@@ -87,7 +79,7 @@ static NSString *CellIdentifier = @"UserCell";
         else
             [others addObject:user];
     }
-    [tableview reloadData];
+    [super.tableView reloadData];
 }
 
 // UITableViewDataSource & UITableViewDataSource

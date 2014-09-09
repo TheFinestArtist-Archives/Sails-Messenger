@@ -53,8 +53,8 @@
     } else {
         UITabBarController *tabBarController = [[UITabBarController alloc] init];
         
-        UserViewController* vc1 = [[UserViewController alloc] init];
-        ChatViewController* vc2 = [[ChatViewController alloc] init];
+        UserViewController* vc1 = [[UserViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        ChatViewController* vc2 = [[ChatViewController alloc] initWithStyle:UITableViewStyleGrouped];
         
         NSArray* controllers = [NSArray arrayWithObjects:vc1, vc2, nil];
         tabBarController.viewControllers = controllers;

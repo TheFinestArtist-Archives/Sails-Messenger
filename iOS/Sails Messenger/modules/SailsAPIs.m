@@ -227,7 +227,7 @@ static NSString * const AFResponseSerializerKey = @"AFResponseSerializerKey";
     
     NSDictionary *params = @{@"chat_id" : [NSString stringWithFormat:@"%ld", chatID]};
     
-    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/chat/message"]
+    [[self sharedAFManager] GET:[MESSENGER_URL stringByAppendingString:@"/chat/messages"]
                      parameters:params
                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
                             dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

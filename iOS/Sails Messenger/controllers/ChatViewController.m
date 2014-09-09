@@ -24,7 +24,7 @@
 
 @implementation ChatViewController
 
-@synthesize tableview, me, myChats, others;
+@synthesize me, myChats, others;
 
 static NSString *CellIdentifier = @"ChatCell";
 
@@ -35,15 +35,8 @@ static NSString *CellIdentifier = @"ChatCell";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    tableview = [[UITableView alloc] initWithFrame:self.view.bounds
-                                             style:UITableViewStyleGrouped];
-    tableview.backgroundColor = [UIColor whiteColor];
-    tableview.delegate = self;
-    tableview.dataSource = self;
-    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.view addSubview:tableview];
+    super.tableView.backgroundColor = [UIColor whiteColor];
+    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     me = [SailsDefaults getUser];
     [self reloadTableView];
@@ -79,7 +72,7 @@ static NSString *CellIdentifier = @"ChatCell";
         else
             [others addObject:chat];
     }
-    [tableview reloadData];
+    [super.tableView reloadData];
 }
 
 // UITableViewDataSource & UITableViewDataSource

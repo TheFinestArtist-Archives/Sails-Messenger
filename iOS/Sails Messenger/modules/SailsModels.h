@@ -11,10 +11,6 @@
 #import "Chat.h"
 #import "Message.h"
 
-#define UsersUpdated @"users_updated"
-#define ChatsUpdated @"chats_updated"
-#define MessagesUpdated @"messages_updated"
-
 @interface SailsModels : NSObject
 
 @property (strong, atomic) NSMutableDictionary *users;

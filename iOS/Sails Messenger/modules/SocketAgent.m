@@ -73,16 +73,19 @@
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"user"]) {
         User *user = [[User alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [SailsModels setUser:user];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UsersUpdated object:nil];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"chat"]) {
         Chat *chat = [[Chat alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [SailsModels setChat:chat];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ChatsUpdated object:nil];
     }
     
     if ([[[packet dataAsJSON] objectForKey:@"name"] isEqual:@"message"]) {
         Message *message = [[Message alloc] initWithDictionary:[data objectForKey:@"args"][0]];
         [SailsModels setMessage:message];
+        [[NSNotificationCenter defaultCenter] postNotificationName:MessagesUpdated object:nil];
     }
 }
 

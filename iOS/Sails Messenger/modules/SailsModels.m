@@ -27,24 +27,20 @@
 + (void)updateUsers:(NSArray *)users {
     for (User *user in users)
         [[self sharedInstance].users setValue:user forKey:[NSString stringWithFormat:@"%ld", user.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:UsersUpdated object:nil];
 }
 
 + (void)updateChats:(NSArray *)chats {
     for (Chat *chat in chats)
         [[self sharedInstance].chats setValue:chat forKey:[NSString stringWithFormat:@"%ld", chat.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChatsUpdated object:nil];
 }
 
 + (void)updateMessages:(NSArray *)messages {
     for (Message *message in messages)
         [[self sharedInstance].messages setValue:message forKey:[NSString stringWithFormat:@"%ld", message.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MessagesUpdated object:nil];
 }
 
 + (void)setUser:(User *)user {
     [[self sharedInstance].users setValue:user forKey:[NSString stringWithFormat:@"%ld", user.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:UsersUpdated object:nil];
 }
 
 + (User *)getUser:(NSInteger)userID {
@@ -53,7 +49,6 @@
 
 + (void)setChat:(Chat *)chat {
     [[self sharedInstance].chats setValue:chat forKey:[NSString stringWithFormat:@"%ld", chat.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:ChatsUpdated object:nil];
 }
 
 + (Chat *)getChat:(NSInteger)chatID {
@@ -62,7 +57,6 @@
 
 + (void)setMessage:(Message *)message {
     [[self sharedInstance].messages setValue:message forKey:[NSString stringWithFormat:@"%ld", message.id]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MessagesUpdated object:nil];
 }
 
 + (Message *)getMessage:(NSInteger)messageID {
@@ -87,9 +81,9 @@
         NSInteger ID1 = ((Message *)obj1).id;
         NSInteger ID2 = ((Message *)obj2).id;
         if (ID1 > ID2)
-            return NSOrderedAscending;
-        else
             return NSOrderedDescending;
+        else
+            return NSOrderedAscending;
     }];
 }
 

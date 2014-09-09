@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <socket.IO/SocketIO.h>
 
+#define UsersUpdated @"users_updated"
+#define ChatsUpdated @"chats_updated"
+#define MessagesUpdated @"messages_updated"
+
 @interface SocketAgent : NSObject <SocketIODelegate>
 
 @property (strong, atomic) SocketIO *socketIO;
