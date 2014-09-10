@@ -7,6 +7,7 @@
 //
 
 #import "MessageViewController.h"
+#import "RDRStickyKeyboardView.h"
 #import "SailsDefaults.h"
 #import "UIColor+Sails.h"
 #import "SailsAPIs.h"
@@ -48,6 +49,11 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     super.tableView.backgroundColor = [UIColor whiteColor];
     super.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    RDRStickyKeyboardView *keyboardView = [[RDRStickyKeyboardView alloc] initWithScrollView:super.tableView];
+    keyboardView.frame = self.view.bounds;
+    keyboardView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:keyboardView];
     
     me = [SailsDefaults getUser];
     [self reloadTableView];
