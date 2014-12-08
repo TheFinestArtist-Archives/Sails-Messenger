@@ -9,19 +9,24 @@ module.exports = {
 
   attributes: {
 
+    // Many to Many
 		chatters: {
 			collection: 'user',
 			via: 'chats'
 		},
 
+    // Many to One
 		messages: {
 			collection: 'message',
 			via: 'chat'
 		},
 
-    toJSON: function() {
-      var obj = this.toObject();
-      obj.chatters = this.chatters;
+    toSimpleJSON: function() {
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
+      obj.chatters = new Array();
+      for (var i = 0; i < this.chatters.length; i++)
+        obj.chatters.push(this.chatters[i].toSimpleJSON());
       delete obj.messages;
       return obj;
     },
@@ -29,7 +34,9 @@ module.exports = {
     toWholeJSON: function() {
       var json = JSON.stringify(this);
       var obj = JSON.parse(json);
-      obj.chatters = this.chatters;
+      obj.chatters = new Array();
+      for (var i = 0; i < this.chatters.length; i++)
+        obj.chatters.push(this.chatters[i].toSimpleJSON());
       delete obj.messages;
       return obj;
     }

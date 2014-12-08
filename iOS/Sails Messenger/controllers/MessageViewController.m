@@ -7,14 +7,15 @@
 //
 
 #import "MessageViewController.h"
-#import "RDRStickyKeyboardView.h"
 #import "SailsDefaults.h"
 #import "UIColor+Sails.h"
 #import "SailsAPIs.h"
 #import "SailsModels.h"
+#import "RDRStickyKeyboardView.h"
 
 @interface MessageViewController ()
 
+@property UITableView *tableview;
 @property User *me;
 @property NSArray *messages;
 
@@ -22,15 +23,15 @@
 
 @implementation MessageViewController
 
-@synthesize me, messages;
+@synthesize tableview, me, messages;
 
 static NSString *MyCellIdentifier = @"MyMessageCell";
 static NSString *OtherCellIdentifier = @"OtherMessageCell";
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
-    self.tabBarController.tabBar.translucent = NO;
     
     UILabel *titlelabel = [[UILabel alloc] initWithFrame:CGRectZero];
     titlelabel.backgroundColor = [UIColor clearColor];
@@ -46,11 +47,16 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    super.tableView.backgroundColor = [UIColor whiteColor];
-    super.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    super.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableview = [[UITableView alloc] initWithFrame:self.view.bounds
+                                             style:UITableViewStylePlain];
+    tableview.backgroundColor = [UIColor whiteColor];
+    tableview.dataSource = self;
+    tableview.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    RDRStickyKeyboardView *keyboardView = [[RDRStickyKeyboardView alloc] initWithScrollView:super.tableView];
+    [self.view addSubview:tableview];
+    
+    RDRStickyKeyboardView *keyboardView = [[RDRStickyKeyboardView alloc] initWithScrollView:tableview];
     keyboardView.frame = self.view.bounds;
     keyboardView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:keyboardView];
@@ -86,10 +92,10 @@ static NSString *OtherCellIdentifier = @"OtherMessageCell";
     else
         messages = [NSArray array];
 
-    [super.tableView reloadData];
+    [tableview reloadData];
 }
 
-// UITableViewDataSource & UITableViewDataSource
+// UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

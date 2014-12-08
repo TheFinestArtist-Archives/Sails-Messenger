@@ -15,16 +15,19 @@ module.exports = {
   		defaultsTo: ''
   	},
 
+    // One to Many
   	chat: {
   		model: 'chat'
   	},
 
+    // One Way
   	author: {
     	model: 'user'
   	},
 
-    toJSON: function() {
-      var obj = this.toObject();
+    toSimpleJSON: function() {
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
       if (this.chat)
         obj.chat = this.chat.id;
       if (this.author)
@@ -37,7 +40,8 @@ module.exports = {
       var obj = JSON.parse(json);
       if (this.chat)
         obj.chat = this.chat.id;
-      obj.author = this.author;
+      if (this.author)
+        obj.author = this.author.toSimpleJSON();
       return obj;
     }
 

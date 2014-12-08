@@ -29,6 +29,7 @@ static NSString *CellIdentifier = @"UserCell";
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
@@ -82,7 +83,7 @@ static NSString *CellIdentifier = @"UserCell";
     [super.tableView reloadData];
 }
 
-// UITableViewDataSource & UITableViewDataSource
+// UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (friends.count == 0 && others.count == 0)
         return 0;
@@ -170,6 +171,7 @@ static NSString *CellIdentifier = @"UserCell";
     cell.backgroundColor = color;
 }
 
+// UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

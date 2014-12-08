@@ -16,15 +16,15 @@ module.exports = {
 			password: password
 		})
 		.exec(function callback(err, user) {
-			if (err || !user)
-				res.badRequest();
+			if (err) return res.negotiate(err);
+			if (!user) return res.serverError();
 
 			User
 			.findOneById(user.id)
 			.populateAll()
 			.exec(function callback(err, user) {
-				if (err || !user)
-					res.notFound();
+				if (err) return res.negotiate(err);
+				if (!user) return res.notFound();
 
 				return res.send(user.toWholeJSON());
 			});
@@ -40,18 +40,10 @@ module.exports = {
 		.findOneByUsername(username)
 		.populateAll()
 		.exec(function callback(err, user) {
-			if (err || !user) {
-				var error = {};
-				error.message = 'User ' + username + ' doesn\'t exist';
-				return res.send(404, error);
-			}
-
-			if (!PasswordHash.verify(password, user.password)) {
-				var error = {};
-				error.message = 'Wrong Password';
-				return res.send(400, error);
-			}
-
+			if (err) return res.negotiate(err);
+			if (!user) return res.notFound();
+			if (!PasswordHash.verify(password, user.password)) return res.badRequest();
+			
 			return res.send(user.toWholeJSON());
 		});
 	},
@@ -60,9 +52,10 @@ module.exports = {
 		User
 		.find()
 		.sort('username ASC')
+		.populateAll()
 		.exec(function callback(err, users) {
-			if (err || !users)
-    		return res.send(JSON.stringify(new Array()));
+			if (err) return res.negotiate(err);
+			if (!users) return res.send(JSON.stringify(new Array()));
 
     	for (var i = 0; i < users.length; i++)
     		users[i] = users[i].toWholeJSON();

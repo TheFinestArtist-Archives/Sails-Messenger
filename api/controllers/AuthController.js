@@ -16,17 +16,9 @@ module.exports = {
 		.findOneByUsername(username)
 		.populateAll()
 		.exec(function callback(err, user) {
-			if (err || !user) {
-				var error = {};
-				error.message = 'User ' + username + ' doesn\'t exist';
-				return res.send(404, error);
-			}
-
-			if (password != user.password) {
-				var error = {};
-				error.message = 'Wrong Password';
-				return res.send(400, error);
-			}
+			if (err) return res.negotiate(err);
+			if (!user) return res.notFound();
+			if (password != user.password) return res.badRequest();
 
 			return res.send(user.toWholeJSON());
 		});

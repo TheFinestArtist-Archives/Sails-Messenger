@@ -21,8 +21,8 @@ module.exports = {
 		})
 		.populateAll()
 		.exec(function callback(err, users) {
-			if (err || !users || users.length != 2)
-				return res.notFound();
+			if (err) return res.negotiate(err);
+			if (!users || users.length != 2) return res.notFound();
 
 			if (users[0].friends.indexOf(users[1].id) == -1) {
 				users[0].friends.push(users[1].id);
@@ -44,21 +44,20 @@ module.exports = {
 				.findOneById(chat.id)
 				.populateAll()
 				.exec(function callback(err, chat) {
-					if (err || !chat)
-						return res.notFound();
+					if (err) return res.negotiate(err);
+					if (!chat) return res.notFound();
 
 					chat.chatters.add(users[0].id);
 					chat.chatters.add(users[1].id);
 					chat.save(function callback(err) {
-						if (err)
-							return res.serverError();
+						if (err) return res.negotiate();
 
 						Chat
 						.findOneById(chat.id)
 						.populateAll()
 						.exec(function callback(err, chat) {
-							if (err || !chat)
-								return res.notFound();
+							if (err) return res.negotiate(err);
+							if (!chat) return res.notFound();
 
 					    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toWholeJSON());
 							return res.send(chat.toWholeJSON());
@@ -78,15 +77,15 @@ module.exports = {
 		.findOneByUsername(username)
 		.populateAll()
 		.exec(function callback(err, user) {
-			if (err || !user)
-				return res.notFound();
+			if (err) return res.negotiate(err);
+			if (!user) return res.notFound();
 
 			Chat
 			.findOneById(chat_id)
 			.populateAll()
 			.exec(function callback(err, chat) {
-				if (err || !chat)
-					return res.notFound();
+				if (err) return res.negotiate(err);
+				if (!chat) return res.notFound();
 
 				if (getIDs(chat.chatters).indexOf(Number(user.id)) >= 0)
 					return res.send(chat.toWholeJSON());
@@ -107,15 +106,14 @@ module.exports = {
 				// update chat
 				chat.chatters.add(user.id);
 				chat.save(function callback(err) {
-					if (err)
-						return res.serverError();
+					if (err) return res.negotiate(err);
 
 					Chat
 					.findOneById(chat_id)
 					.populateAll()
 					.exec(function callback(err, chat) {
-						if (err || !chat)
-							return res.notFound();
+						if (err) return res.negotiate(err);
+						if (!chat) return res.notFound();
 
 				    sails.sockets.broadcast('Chat#' + chat.id, 'chat', chat.toWholeJSON());
 						return res.send(chat.toWholeJSON());
@@ -131,8 +129,8 @@ module.exports = {
 		.sort('id DESC')
 		.populateAll()
 		.exec(function callback(err, chats) {
-			if (err || !chats)
-    		return res.send(JSON.stringify(new Array()));
+			if (err) return res.negotiate(err);
+			if (!chats) return res.send(JSON.stringify(new Array()));
 
     	for (var i = 0; i < chats.length; i++)
     		chats[i] = chats[i].toWholeJSON();
@@ -148,16 +146,16 @@ module.exports = {
 		.findOneById(chat_id)
 		.populateAll()
 		.exec(function callback(err, chat) {
-			if (err || !chat)
-				return res.notFound();
+			if (err) return res.negotiate(err);
+			if (!chat) return res.notFound();
 
   		Message
   		.findById(getIDs(chat.messages))
 			.populateAll()
   		.sort('id ASC')
   		.exec(function callback(err, messages) {
-  			if (err || !messages)
-	    		return res.send(JSON.stringify(new Array()));
+				if (err) return res.negotiate(err);
+  			if (!messages) return res.send(JSON.stringify(new Array()));
 
 	    	for (var i = 0; i < messages.length; i++)
 	    		messages[i] = messages[i].toWholeJSON();

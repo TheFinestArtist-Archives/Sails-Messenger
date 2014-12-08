@@ -15,7 +15,6 @@
 
 @interface ChatViewController ()
 
-@property UITableView *tableview;
 @property User *me;
 @property NSMutableArray *myChats;
 @property NSMutableArray *others;
@@ -30,6 +29,7 @@ static NSString *CellIdentifier = @"ChatCell";
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
     
@@ -75,7 +75,7 @@ static NSString *CellIdentifier = @"ChatCell";
     [super.tableView reloadData];
 }
 
-// UITableViewDataSource & UITableViewDataSource
+// UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (myChats.count == 0 && others.count == 0)
         return 0;
@@ -177,6 +177,7 @@ static NSString *CellIdentifier = @"ChatCell";
     cell.backgroundColor = color;
 }
 
+// UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

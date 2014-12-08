@@ -47,6 +47,13 @@
 			remoteGlobalIDString = D432384519B0006700A79C73;
 			remoteInfo = "Sails Messenger";
 		};
+		D49A02CE19EE51B100E935DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4A7093919BC309900D8C2AF /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92D134391CA04392A6B3BC18;
+			remoteInfo = "Pods-RDRStickyKeyboardView";
+		};
 		D4A7095A19BC309A00D8C2AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4A7093919BC309900D8C2AF /* Pods.xcodeproj */;
@@ -748,6 +755,7 @@
 				D4A7095D19BC309A00D8C2AF /* libPods-AFNetworkActivityLogger.a */,
 				D4A7095F19BC309A00D8C2AF /* libPods-AFNetworking.a */,
 				D4A7096119BC309A00D8C2AF /* libPods-MBProgressHUD.a */,
+				D49A02CF19EE51B100E935DF /* libPods-RDRStickyKeyboardView.a */,
 				D4A7096319BC309A00D8C2AF /* libPods-SocketRocket.a */,
 				D4A7096519BC309A00D8C2AF /* libPods-socket.IO.a */,
 			);
@@ -894,6 +902,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		D49A02CF19EE51B100E935DF /* libPods-RDRStickyKeyboardView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-RDRStickyKeyboardView.a";
+			remoteRef = D49A02CE19EE51B100E935DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D4A7095B19BC309A00D8C2AF /* libPods.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;

@@ -16,8 +16,8 @@ module.exports = {
 		.findOneByUsername(username)
 		.populateAll()
 		.exec(function callback(err, user) {
-			if (err || !user)
-				return res.notFound();
+			if (err) return res.negotiate(err);
+			if (!user) return res.notFound();
 
 			// User Create
 	    sails.sockets.join(req.socket, 'Users');

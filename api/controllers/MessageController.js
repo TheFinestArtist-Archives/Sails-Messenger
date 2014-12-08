@@ -20,15 +20,15 @@ module.exports = {
 			chat: chat
 		})
 		.exec(function callback(err, message) {
-			if (err || !message)
-				res.badRequest();
+			if (err) return res.negotiate(err);
+			if (!message) return res.serverError();
 
 			Message
 			.findOneById(message.id)
 			.populateAll()
 			.exec(function callback(err, message) {
-				if (err || !message)
-					res.notFound();
+				if (err) return res.negotiate(err);
+				if (!message) res.notFound();
 
 				return res.send(message.toWholeJSON());
 			});

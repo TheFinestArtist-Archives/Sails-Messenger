@@ -23,18 +23,22 @@ module.exports = {
 			required: true
 		},
 
+    // Many to Many
 		chats: {
 			collection: 'chat',
 			via: 'chatters',
 			dominant: true
 		},
 
+    // Array
 		friends: {
-      type: 'json'
+      type: 'array',
+      defaultsTo: new Array()
 		},
 
-    toJSON: function() {
-      var obj = this.toObject();
+    toSimpleJSON: function() {
+      var json = JSON.stringify(this);
+      var obj = JSON.parse(json);
       delete obj.chats;
       delete obj.friends;
       return obj;
@@ -43,7 +47,9 @@ module.exports = {
     toWholeJSON: function() {
       var json = JSON.stringify(this);
       var obj = JSON.parse(json);
-      obj.chats = this.chats;
+      obj.chats = new Array();
+      for (var i = 0; i < this.chats.length; i++)
+        obj.chats.push(this.chats[i].toSimpleJSON());
       obj.friends = this.friends;
       return obj;
     }
@@ -52,7 +58,6 @@ module.exports = {
 
   beforeCreate: function(values, next) {
     values.password = PasswordHash.generate(values.password);
-    values.friends = new Array();
     next();
   },
 

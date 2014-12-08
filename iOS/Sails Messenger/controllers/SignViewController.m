@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -66,7 +67,7 @@
     [usernameField becomeFirstResponder];
 }
 
-// UITableViewDataSource & UITableViewDataSource
+// UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
