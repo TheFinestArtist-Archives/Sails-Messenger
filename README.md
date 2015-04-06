@@ -5,6 +5,15 @@ Web/iOS/Android Messenger Application using sockets/api in Sails.js
 
 This is skelecton code for messenger.
 
+sails-turquoise: #0b8fa2     => 11, 143, 162
+sails-emerald : #41bac2 => 65, 186, 194
+sails-black : #001c20 => 0, 28, 32
+sails-grey : #e4f0f1 => 228, 240, 241
+
+User
+Chat
+Message
+
 
 ##JSON TYPE
 =================
